@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>营养师 Agent 测试工具 · 食寐有时</title>
+<style>
+:root {
+  --ink: #1C1814;
+  --cinnabar: #C7513B;
+  --cinnabar-soft: #FDF2EE;
+  --bamboo: #5A7A5A;
+  --bamboo-soft: #EDF5EE;
+  --moon-white: #F7F3EC;
+  --paper: #FBF8F3;
+  --sandalwood: #B8845B;
+  --indigo: #2C4A5A;
+  --indigo-soft: #EDF0F5;
+  --frost: #8B8178;
+  --gold: #C4A265;
+  --border: #E8E0D5;
+  --char: #3A3530;
+  --font-display: 'STKaiti','KaiTi','Songti SC','Noto Serif SC',serif;
+  --font-body: -apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue',sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --neu-shadow: 0 2px 8px rgba(60,40,20,0.06);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: var(--font-body);
+  background: var(--moon-white);
+  color: var(--ink);
+  min-height: 100vh;
+  padding: 20px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.test-header {
+  text-align: center;
+  padding: 24px 0 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+.test-header-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.test-header-sub {
+  font-size: 12px;
+  color: var(--frost);
+  line-height: 1.6;
+}
+.test-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--char);
+  margin: 20px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.test-section-title::before {
+  content: '';
+  width: 3px;
+  height: 14px;
+  background: var(--cinnabar);
+  border-radius: 2px;
+}
+.profile-card {
+  background: var(--paper);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: var(--neu-shadow);
+  cursor: pointer;
+  transition: all 0.25s;
+  border: 2px solid transparent;
+}
+.profile-card:active {
+  transform: scale(0.98);
+  border-color: var(--cinnabar);
+}
+.profile-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.profile-seal {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: white;
+  flex-shrink: 0;
+}
+.profile-info { flex: 1; min-width: 0; }
+.profile-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.profile-meta {
+  font-size: 11px;
+  color: var(--frost);
+}
+.profile-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.profile-tag {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.tag-sleep { background: var(--indigo-soft); color: var(--indigo); }
+.tag-digestion { background: var(--bamboo-soft); color: var(--bamboo); }
+.tag-mood { background: var(--cinnabar-soft); color: var(--cinnabar); }
+.tag-energy { background: #F5EDF0; color: var(--sandalwood); }
+.profile-desc {
+  font-size: 12px;
+  color: var(--frost);
+  line-height: 1.6;
+  padding: 8px 10px;
+  background: var(--moon-white);
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.profile-data-row {
+  display: flex;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--frost);
+}
+.profile-data-item {
+  flex: 1;
+}
+.profile-data-label { color: var(--frost); }
+.profile-data-value { color: var(--ink); font-weight: 500; }
+.profile-load-btn {
+  width: 100%;
+  padding: 9px;
+  background: var(--cinnabar);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 4px;
+  font-family: var(--font-body);
+}
+.profile-load-btn:active { background: #B04532; }
+.test-tips {
+  background: var(--bamboo-soft);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin: 20px 0;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--bamboo);
+}
+.test-tips-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--ink);
+  font-size: 13px;
+}
+.test-actions {
+  display: flex;
+  gap: 10px;
+  margin: 16px 0;
+}
+.test-action-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 12px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+.test-action-btn:active { background: var(--cinnabar-soft); border-color: var(--cinnabar); color: var(--cinnabar); }
+.toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: rgba(28,24,20,0.9);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 13px;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="test-header">
+  <div class="test-header-title">营养师 Agent 测试工具</div>
+  <div class="test-header-sub">选择模拟用户档案，一键加载后跳转小程序<br>测试 Agent 在不同体质/症状下的个性化回复</div>
+</div>
+
+<div class="test-actions">
+  <button class="test-action-btn" onclick="clearData()">🗑 清除当前数据</button>
+  <button class="test-action-btn" onclick="viewCurrentData()">📋 查看当前数据</button>
+</div>
+
+<div class="test-section-title">模拟用户档案（6种场景）</div>
+<div id="profileList"></div>
+
+<div class="test-tips">
+  <div class="test-tips-title">💡 测试建议</div>
+  1. 点击档案卡片下方的"加载并测试"按钮，自动写入数据并跳转<br>
+  2. 进入小程序后，点击首页"营养师小筑·AI咨询"卡片<br>
+  3. 测试以下问题观察个性化差异：<br>
+  &nbsp;&nbsp;• "最近总失眠怎么办"（不同体质回复不同）<br>
+  &nbsp;&nbsp;• "我的体质适合什么食物"<br>
+  &nbsp;&nbsp;• 点击"解读我的档案"看档案摘要<br>
+  &nbsp;&nbsp;• 点击"睡眠评估/肠胃评估/情绪评估"做专项测评<br>
+  &nbsp;&nbsp;• 输入"连续一周整夜睡不着"测试异常分支<br>
+  4. Demo模式下数据不持久化，刷新即恢复
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var STORE_KEY = 'shimeiyoushi_v2';
+
+// ===== 6 个模拟用户档案 =====
+var MOCK_PROFILES = [
+  {
+    id: 'insomnia',
+    seal: '心',
+    sealColor: '#C7513B',
+    name: '李梅 · 重度失眠',
+    meta: '32岁 · 女 · BMI 19.8',
+    tags: [{text:'睡眠问题',cls:'tag-sleep'},{text:'精力不足',cls:'tag-energy'}],
+    desc: '互联网产品经理，长期脑力劳动，入睡需1小时以上，多梦易醒，晨起疲惫，已持续2个月。',
+    data: {
+      user: {
+        hasAgreed: true, isLoggedIn: true, name: '李梅', age: '32', gender: '女',
+        height: '162', weight: '52', eatingHabits: ['饮食不规律','喜甜食'],
+        lifestyle: ['熬夜','久坐','脑力劳动'], goals: ['改善睡眠'],
+        dietaryRestrictions: [], bmi: 19.8, bmiCategory: '正常'
+      },
+      constitution: {
+        key: 'heart_spleen_deficiency', name: '心脾两虚', seal: '心',
+        description: '思虑过度，心血暗耗，脾气受损，导致气血生化不足，心神失养。',
+        tags: ['入睡困难','多梦易醒','心悸健忘','食欲不振','面色萎黄'],
+        keySymptom: '入睡困难',
+        advice: '宜补益心脾、养血安神。多食红枣、桂圆、莲子、山药、小米等。',
+        dietPrinciple: '补益心脾，养血安神',
+        avoidFoods: ['浓茶','咖啡','辛辣食物','生冷食物']
+      },
+      symptoms: ['入睡困难','多梦易醒','心悸健忘','食欲不振'],
+      diagnosisCompleted: true,
+      healthIssues: ['sleep','energy'],
+      currentRecipe: null,
+      checkins: buildCheckins([1,2,1,2,1,2,1], ['昨晚2点才睡着','多梦，醒来很累','心悸明显','食欲差没吃晚餐','吃了桂圆粥稍有改善','又失眠了','持续疲惫']),
+      reminders: {},
+      consultationRequests: [],
+      chatMessages: [],
+      agentConversations: [],
+      lastReportDate: null,
+      favoriteRecipes: []
+    }
+  },
+  {
+    id: 'digestion',
+    seal: '脾',
+    sealColor: '#B8845B',
+    name: '王强 · 肠胃不适',
+    meta: '35岁 · 男 · BMI 24.5',
+    tags: [{text:'肠胃调理',cls:'tag-digestion'}],
+    desc: '销售经理，应酬多，外卖依赖，饭后胃胀，消化不良，大便时干时稀，睡眠受影响。',
+    data: {
+      user: {
+        hasAgreed: true, isLoggedIn: true, name: '王强', age: '35', gender: '男',
+        height: '172', weight: '72', eatingHabits: ['外卖依赖','应酬多','喜油腻'],
+        lifestyle: ['久坐','应酬','饮食不规律'], goals: ['调理肠胃'],
+        dietaryRestrictions: [], bmi: 24.3, bmiCategory: '正常'
+      },
+      constitution: {
+        key: 'spleen_stomach_weak', name: '脾胃虚弱', seal: '脾',
+        description: '饮食不节，损伤脾胃，运化失常，痰湿内生，胃不和则卧不安。',
+        tags: ['胃胀腹胀','消化不良','便溏','身体沉重','睡眠不安'],
+        keySymptom: '胃胀腹胀',
+        advice: '宜健脾和胃、化湿安神。多食山药、茯苓、薏米、白扁豆、小米等。',
+        dietPrinciple: '健脾和胃，化湿安神',
+        avoidFoods: ['生冷','油腻','甜腻','牛奶（部分人）']
+      },
+      symptoms: ['胃胀腹胀','消化不良','便溏','身体沉重'],
+      diagnosisCompleted: true,
+      healthIssues: ['digestion','sleep'],
+      currentRecipe: null,
+      checkins: buildCheckins([2,3,2,1,2,3,2], ['应酬吃太撑，胃胀一夜','消化不良，没胃口','吃了山药粥好点','外卖后又胃胀','便秘了','腹泻，可能吃坏肚子','胃还是不舒服']),
+      reminders: {},
+      consultationRequests: [],
+      chatMessages: [],
+      agentConversations: [],
+      lastReportDate: null,
+      favoriteRecipes: []
+    }
+  },
+  {
+    id: 'mood',
+    seal: '肝',
+    sealColor: '#5A7A5A',
+    name: '张琳 · 情绪焦虑',
+    meta: '29岁 · 女 · BMI 20.5',
+    tags: [{text:'情绪管理',cls:'tag-mood'},{text:'睡眠问题',cls:'tag-sleep'}],
+    desc: '新媒体运营，工作压力大，烦躁易怒，胸闷胁痛，凌晨1-3点早醒，经前乳房胀痛。',
+    data: {
+      user: {
+        hasAgreed: true, isLoggedIn: true, name: '张琳', age: '29', gender: '女',
+        height: '165', weight: '56', eatingHabits: ['喜辣','咖啡依赖'],
+        lifestyle: ['熬夜','压力大','久坐'], goals: ['改善情绪','改善睡眠'],
+        dietaryRestrictions: [], bmi: 20.6, bmiCategory: '正常'
+      },
+      constitution: {
+        key: 'liver_qi_stagnation', name: '肝郁气滞', seal: '肝',
+        description: '情志不遂，肝气郁结，气机不畅，郁而化火，上扰心神。',
+        tags: ['烦躁易怒','胸闷胁痛','入睡困难','早醒','经前乳房胀痛'],
+        keySymptom: '烦躁易怒',
+        advice: '宜疏肝解郁、理气安神。多食玫瑰花、佛手、陈皮、金橘、芹菜等。',
+        dietPrinciple: '疏肝解郁，理气安神',
+        avoidFoods: ['咖啡','浓茶','酒精','高糖食物']
+      },
+      symptoms: ['烦躁易怒','胸闷胁痛','早醒','经前乳房胀痛'],
+      diagnosisCompleted: true,
+      healthIssues: ['mood','sleep'],
+      currentRecipe: null,
+      checkins: buildCheckins([2,1,2,2,3,2,1], ['跟同事吵架，气到失眠','喝了玫瑰花茶，稍微平静','凌晨2点醒，再没睡着','压力大，胸闷','崩溃的一天，完全睡不着','喝了薰衣草茶，勉强入睡','又早醒了，心情低落']),
+      reminders: {},
+      consultationRequests: [],
+      chatMessages: [],
+      agentConversations: [],
+      lastReportDate: null,
+      favoriteRecipes: []
+    }
+  },
+  {
+    id: 'phlegm',
+    seal: '痰',
+    sealColor: '#C4A265',
+    name: '陈刚 · 痰热综合',
+    meta: '42岁 · 男 · BMI 26.8',
+    tags: [{text:'睡眠问题',cls:'tag-sleep'},{text:'肠胃调理',cls:'tag-digestion'}],
+    desc: '企业主，应酬频繁，饮食油腻，口苦口臭，痰多，睡眠不深，噩梦纷纭，便秘。',
+    data: {
+      user: {
+        hasAgreed: true, isLoggedIn: true, name: '陈刚', age: '42', gender: '男',
+        height: '175', weight: '82', eatingHabits: ['应酬多','喜油腻','夜宵'],
+        lifestyle: ['应酬','久坐','熬夜'], goals: ['改善睡眠','调理肠胃','减重'],
+        dietaryRestrictions: [], bmi: 26.8, bmiCategory: '超重'
+      },
+      constitution: {
+        key: 'phlegm_heat_disturb', name: '痰热内扰', seal: '痰',
+        description: '饮食肥甘厚味，酿生痰热，痰热上扰心神。常见于饮食油腻、应酬频繁者。',
+        tags: ['胸闷心烦','口苦口臭','痰多','睡眠不深','噩梦纷纭'],
+        keySymptom: '口苦口臭',
+        advice: '宜清热化痰、宁心安神。多食竹茹、陈皮、冬瓜、丝瓜、苦瓜等。',
+        dietPrinciple: '清热化痰，宁心安神',
+        avoidFoods: ['肥肉','油炸','甜食','烧烤']
+      },
+      symptoms: ['胸闷心烦','口苦口臭','痰多','睡眠不深','便秘'],
+      diagnosisCompleted: true,
+      healthIssues: ['sleep','digestion'],
+      currentRecipe: null,
+      checkins: buildCheckins([2,2,1,2,3,2,2], ['夜宵吃烧烤，噩梦一夜','口苦，痰多','清淡饮食一天，稍好','又应酬，胃胀失眠','完全没睡好，头痛','便秘第三天','口臭明显，精力差']),
+      reminders: {},
+      consultationRequests: [],
+      chatMessages: [],
+      agentConversations: [],
+      lastReportDate: null,
+      favoriteRecipes: []
+    }
+  },
+  {
+    id: 'yin',
+    seal: '阴',
+    sealColor: '#2C4A5A',
+    name: '苏雅 · 阴虚火旺',
+    meta: '27岁 · 女 · BMI 18.2',
+    tags: [{text:'睡眠问题',cls:'tag-sleep'},{text:'情绪管理',cls:'tag-mood'}],
+    desc: '设计师，长期熬夜，五心烦热，盗汗，口干咽燥，心烦不眠，舌红少苔。',
+    data: {
+      user: {
+        hasAgreed: true, isLoggedIn: true, name: '苏雅', age: '27', gender: '女',
+        height: '160', weight: '46', eatingHabits: ['喜辛辣','饮食不规律'],
+        lifestyle: ['熬夜','过度劳累','压力大'], goals: ['改善睡眠','调理体质'],
+        dietaryRestrictions: [], bmi: 18.0, bmiCategory: '偏瘦'
+      },
+      constitution: {
+        key: 'yin_deficiency_fire', name: '阴虚火旺', seal: '阴',
+        description: '阴液亏虚，水火不济，虚火上扰心神。常见于熬夜、过度劳累、长期压力大的人群。',
+        tags: ['心烦不眠','口干咽燥','五心烦热','盗汗','舌红少苔'],
+        keySymptom: '五心烦热',
+        advice: '宜滋阴降火、宁心安神。多食百合、银耳、枸杞、桑葚、黑芝麻等。',
+        dietPrinciple: '滋阴降火，宁心安神',
+        avoidFoods: ['羊肉','辛辣','油炸','酒类']
+      },
+      symptoms: ['心烦不眠','口干咽燥','五心烦热','盗汗'],
+      diagnosisCompleted: true,
+      healthIssues: ['sleep','mood'],
+      currentRecipe: null,
+      checkins: buildCheckins([1,2,1,1,2,1,2], ['手心脚心发热，睡不着','盗汗醒来，口干','心烦，3点才睡着','又盗汗了','吃了银耳羹好一点','五心烦热明显','熬夜赶稿，彻底失眠']),
+      reminders: {},
+      consultationRequests: [],
+      chatMessages: [],
+      agentConversations: [],
+      lastReportDate: null,
+      favoriteRecipes: []
+    }
+  },
+  {
+    id: 'qi_blood',
+    seal: '血',
+    sealColor: '#C7513B',
+    name: '刘芳 · 气血两虚',
+    meta: '38岁 · 女 · BMI 17.5',
+    tags: [{text:'精力不足',cls:'tag-energy'},{text:'睡眠问题',cls:'tag-sleep'}],
+    desc: '产后恢复期妈妈，头晕眼花，心悸失眠，面色苍白，神疲乏力，月经量少。',
+    data: {
+      user: {
+        hasAgreed: true, isLoggedIn: true, name: '刘芳', age: '38', gender: '女',
+        height: '163', weight: '47', eatingHabits: ['饮食清淡','食量小'],
+        lifestyle: ['过度劳累','带娃'], goals: ['补气血','改善睡眠'],
+        dietaryRestrictions: [], bmi: 17.7, bmiCategory: '偏瘦'
+      },
+      constitution: {
+        key: 'qi_blood_deficiency', name: '气血两虚', seal: '血',
+        description: '气血不足，心神失养，脑髓不充。常见于体质虚弱、术后恢复期、长期节食者。',
+        tags: ['头晕眼花','心悸失眠','面色苍白','神疲乏力','月经量少'],
+        keySymptom: '神疲乏力',
+        advice: '宜益气养血、安神定志。多食当归、黄芪、龙眼肉、红枣、黑豆等。',
+        dietPrinciple: '益气养血，安神定志',
+        avoidFoods: ['生冷','寒凉','浓茶','萝卜（解药性）']
+      },
+      symptoms: ['头晕眼花','心悸失眠','面色苍白','神疲乏力'],
+      diagnosisCompleted: true,
+      healthIssues: ['energy','sleep'],
+      currentRecipe: null,
+      checkins: buildCheckins([1,1,2,1,2,1,1], ['头晕，起不来','心悸，没力气','吃了红枣粥，稍微好点','又心悸了','乏力，什么都不想做','面色苍白，家人担心','完全没精神，失眠']),
+      reminders: {},
+      consultationRequests: [],
+      chatMessages: [],
+      agentConversations: [],
+      lastReportDate: null,
+      favoriteRecipes: []
+    }
+  }
+];
+
+// 构造近7天打卡数据
+function buildCheckins(sleepScores, notes) {
+  var checkins = {};
+  var today = new Date();
+  for (var i = 6; i >= 0; i--) {
+    var d = new Date(today);
+    d.setDate(d.getDate() - i);
+    var key = d.toISOString().slice(0,10);
+    var idx = 6 - i;
+    checkins[key] = {
+      meals: { '早餐': true, '午餐': idx % 2 === 0, '晚餐': true, '睡前食疗': idx % 3 === 0 },
+      sleepScore: sleepScores[idx],
+      notes: notes[idx] || ''
+    };
+  }
+  return checkins;
+}
+
+// ===== 渲染档案列表 =====
+function renderProfiles() {
+  var html = '';
+  MOCK_PROFILES.forEach(function(p) {
+    var checkinKeys = Object.keys(p.data.checkins);
+    var avgSleep = 0, cnt = 0;
+    checkinKeys.forEach(function(k) {
+      if (p.data.checkins[k].sleepScore > 0) { avgSleep += p.data.checkins[k].sleepScore; cnt++; }
+    });
+    avgSleep = cnt > 0 ? (avgSleep/cnt).toFixed(1) : '0';
+
+    html += '<div class="profile-card">';
+    html += '<div class="profile-card-header">';
+    html += '<div class="profile-seal" style="background:' + p.sealColor + ';">' + p.seal + '</div>';
+    html += '<div class="profile-info">';
+    html += '<div class="profile-name">' + p.name + '</div>';
+    html += '<div class="profile-meta">' + p.meta + ' · ' + p.data.constitution.name + '</div>';
+    html += '</div></div>';
+    html += '<div class="profile-tags">';
+    p.tags.forEach(function(t) {
+      html += '<span class="profile-tag ' + t.cls + '">' + t.text + '</span>';
+    });
+    html += '</div>';
+    html += '<div class="profile-desc">' + p.desc + '</div>';
+    html += '<div class="profile-data-row">';
+    html += '<div class="profile-data-item"><span class="profile-data-label">症状：</span><span class="profile-data-value">' + p.data.symptoms.length + '项</span></div>';
+    html += '<div class="profile-data-item"><span class="profile-data-label">近7天均睡眠：</span><span class="profile-data-value">' + avgSleep + '星</span></div>';
+    html += '<div class="profile-data-item"><span class="profile-data-label">打卡：</span><span class="profile-data-value">' + checkinKeys.length + '天</span></div>';
+    html += '</div>';
+    html += '<button class="profile-load-btn" onclick="loadProfile(\'' + p.id + '\')">加载并测试 →</button>';
+    html += '</div>';
+  });
+  document.getElementById('profileList').innerHTML = html;
+}
+
+// ===== 加载档案 =====
+function loadProfile(id) {
+  var profile = MOCK_PROFILES.find(function(p) { return p.id === id; });
+  if (!profile) return;
+  try {
+    localStorage.setItem(STORE_KEY, JSON.stringify(profile.data));
+    showToast('已加载「' + profile.name + '」，正在跳转...');
+    setTimeout(function() {
+      window.location.href = 'preview.html';
+    }, 800);
+  } catch(e) {
+    showToast('加载失败：' + e.message);
+  }
+}
+
+// ===== 清除数据 =====
+function clearData() {
+  localStorage.removeItem(STORE_KEY);
+  showToast('已清除所有数据');
+}
+
+// ===== 查看当前数据 =====
+function viewCurrentData() {
+  var raw = localStorage.getItem(STORE_KEY);
+  if (!raw) {
+    showToast('当前无数据');
+    return;
+  }
+  try {
+    var data = JSON.parse(raw);
+    var info = '当前用户：' + (data.user.name || '未命名') + '\n';
+    info += '体质：' + (data.constitution ? data.constitution.name : '未诊断') + '\n';
+    info += '症状：' + (data.symptoms || []).join('、') + '\n';
+    info += '健康关注：' + (data.healthIssues || []).join('、') + '\n';
+    info += '登录状态：' + (data.user.isLoggedIn ? '已登录' : '未登录') + '\n';
+    info += 'Agent对话：' + ((data.agentConversations || []).length) + '条';
+    alert(info);
+  } catch(e) {
+    showToast('数据解析失败');
+  }
+}
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 1800);
+}
+
+renderProfiles();
+</script>
+</body>
+</html>
