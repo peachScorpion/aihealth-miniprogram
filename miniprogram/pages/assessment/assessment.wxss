@@ -1,0 +1,213 @@
+/* 食寐有时 - 体质评估问卷样式 */
+/* Palette: Cinnabar #C7513B, Indigo #2C4A5A, Moon White #F7F3EC, Paper #FBF8F3, Ink #1C1814, Frost #8B8178 */
+
+.page-assessment {
+  min-height: 100vh;
+  background: #F7F3EC;
+  display: flex;
+  flex-direction: column;
+  padding: 0 32rpx;
+}
+
+/* ===== 进度区 ===== */
+.progress-section {
+  padding: 40rpx 0 32rpx;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.progress-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #2C4A5A;
+}
+
+.progress-count {
+  font-size: 28rpx;
+  color: #C7513B;
+  font-weight: 600;
+  background: rgba(199, 81, 59, 0.08);
+  padding: 6rpx 24rpx;
+  border-radius: 999rpx;
+}
+
+.progress-bar-wrap {
+  height: 8rpx;
+  background: #E8E0D6;
+  border-radius: 999rpx;
+  overflow: hidden;
+  margin-bottom: 12rpx;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: #C7513B;
+  border-radius: 999rpx;
+  transition: width 0.4s ease;
+}
+
+.progress-hint {
+  font-size: 24rpx;
+  color: #8B8178;
+  text-align: center;
+}
+
+/* ===== 题目区 ===== */
+.question-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.question-card {
+  background: #FBF8F3;
+  border-radius: 28rpx;
+  padding: 40rpx 32rpx 32rpx;
+  margin-bottom: 24rpx;
+  border: 1rpx solid rgba(199, 81, 59, 0.06);
+  position: relative;
+}
+
+.question-number {
+  font-size: 24rpx;
+  color: #C7513B;
+  font-weight: 700;
+  margin-bottom: 12rpx;
+  letter-spacing: 2rpx;
+}
+
+.question-text {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #2C4A5A;
+  line-height: 1.5;
+  margin-bottom: 16rpx;
+}
+
+.question-type-tag {
+  font-size: 22rpx;
+  color: #8B8178;
+  background: #F7F3EC;
+  padding: 4rpx 16rpx;
+  border-radius: 999rpx;
+  display: inline-block;
+}
+
+/* ===== 选项列表 ===== */
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  padding-bottom: 32rpx;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  background: #FBF8F3;
+  border-radius: 20rpx;
+  padding: 28rpx 28rpx;
+  border: 2rpx solid #E8E0D6;
+  transition: all 0.2s ease;
+}
+
+.option-item:active {
+  transform: scale(0.98);
+}
+
+.option-item.selected {
+  border-color: #C7513B;
+  background: rgba(199, 81, 59, 0.06);
+}
+
+.option-radio {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 3rpx solid #D0C5B8;
+  margin-right: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.option-item.selected .option-radio {
+  border-color: #C7513B;
+}
+
+.option-radio-inner {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background: #C7513B;
+}
+
+.option-label {
+  flex: 1;
+  font-size: 30rpx;
+  color: #1C1814;
+  line-height: 1.4;
+}
+
+.option-item.selected .option-label {
+  color: #C7513B;
+  font-weight: 500;
+}
+
+.option-check {
+  color: #C7513B;
+  font-size: 28rpx;
+  font-weight: 700;
+  margin-left: 12rpx;
+}
+
+/* ===== 底部操作 ===== */
+.action-section {
+  padding: 24rpx 0 60rpx;
+}
+
+.action-row {
+  display: flex;
+  gap: 20rpx;
+}
+
+.btn-prev {
+  flex: 0 0 180rpx;
+  height: 96rpx;
+  font-size: 30rpx;
+  background: transparent;
+  color: #C7513B;
+  border: 2rpx solid #C7513B;
+  border-radius: 24rpx;
+}
+
+.btn-prev:active {
+  background: rgba(199, 81, 59, 0.06);
+}
+
+.btn-next, .btn-submit {
+  flex: 1;
+  height: 96rpx;
+  font-size: 34rpx;
+  background: #C7513B;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 24rpx;
+  font-weight: 600;
+}
+
+.btn-next:active, .btn-submit:active {
+  background: #B1402D;
+}
+
+.btn-next.disabled, .btn-submit.disabled {
+  background: #E0D5C8;
+  color: #B8A99A;
+}
