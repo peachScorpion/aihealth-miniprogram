@@ -1,0 +1,73 @@
+<!-- 食寐有时 - 首页/登录 -->
+<view class="page-index">
+  <!-- 背景装饰 -->
+  <view class="bg-decoration">
+    <view class="bg-circle bg-circle-1"></view>
+    <view class="bg-circle bg-circle-2"></view>
+  </view>
+
+  <!-- 主内容区 -->
+  <view class="hero-section">
+    <!-- 中式印章 -->
+    <view class="seal-wrap">
+      <view class="seal-border">
+        <text class="seal-char">食</text>
+      </view>
+    </view>
+
+    <view class="logo-area">
+      <view class="logo-text">食寐有时</view>
+      <view class="logo-subtitle">Shi Mei You Shi</view>
+    </view>
+
+    <view class="hero-tagline">
+      <text class="tagline-main">调饮食，安睡眠，得自在</text>
+    </view>
+
+    <view class="feature-cards">
+      <view class="feature-item">
+        <view class="feature-icon-wrap">
+          <view class="feature-icon-shape shape-ai"></view>
+        </view>
+        <view class="feature-content">
+          <view class="feature-text">AI 智能问诊</view>
+          <view class="feature-desc">中医体质辨识</view>
+        </view>
+      </view>
+      <view class="feature-item">
+        <view class="feature-icon-wrap">
+          <view class="feature-icon-shape shape-trust"></view>
+        </view>
+        <view class="feature-content">
+          <view class="feature-text">专业可信</view>
+          <view class="feature-desc">药食同源调理</view>
+        </view>
+      </view>
+      <view class="feature-item">
+        <view class="feature-icon-wrap">
+          <view class="feature-icon-shape shape-easy"></view>
+        </view>
+        <view class="feature-content">
+          <view class="feature-text">简单有效</view>
+          <view class="feature-desc">每日方案轻松执行</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作区 -->
+  <view class="bottom-section">
+    <view class="trust-badge">
+      <view class="trust-icon-shape"></view>
+      <text class="trust-text">饮食调理建议，不替代医疗诊断</text>
+    </view>
+    
+    <button class="btn btn-primary login-btn" bindtap="handleLogin">
+      微信授权登录
+    </button>
+
+    <view class="tips-text">
+      登录即表示同意<text class="link-text" bindtap="showPrivacy">《用户协议》</text>和<text class="link-text" bindtap="showPrivacy">《隐私政策》</text>
+    </view>
+  </view>
+</view>
