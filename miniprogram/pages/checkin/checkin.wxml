@@ -1,0 +1,67 @@
+<!-- 食寐有时 - 打卡评分页 -->
+<view class="page-checkin">
+  <!-- 日期标题 -->
+  <view class="checkin-header">
+    <view class="checkin-date">{{todayDate}}</view>
+    <view class="checkin-subtitle">记录今天的饮食与睡眠</view>
+  </view>
+
+  <!-- 餐食打卡区 -->
+  <view class="meal-checkin-section">
+    <view class="section-label">饮食完成情况</view>
+    <view class="meal-checklist">
+      <view 
+        wx:for="{{mealList}}" 
+        wx:key="type"
+        class="checkin-meal-item {{item.checked ? 'checked' : ''}}"
+        bindtap="toggleMeal"
+        data-type="{{item.type}}"
+      >
+        <view class="meal-checkbox">
+          <text wx:if="{{item.checked}}" class="check-mark">&#10003;</text>
+        </view>
+        <view class="meal-info">
+          <view class="meal-label-text">{{item.label}}</view>
+          <view class="meal-name-text">{{item.name || '--'}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 睡眠评分区 -->
+  <view class="sleep-rating-section">
+    <view class="section-label">昨晚睡得怎么样？</view>
+    <view class="rating-card">
+      <star-rating 
+        score="{{sleepScore}}" 
+        bind:change="onScoreChange"
+      />
+      <view class="rating-text">
+        {{sleepScore === 0 ? '点击星星评分' : (sleepScore === 1 ? '很差' : (sleepScore === 2 ? '较差' : (sleepScore === 3 ? '一般' : (sleepScore === 4 ? '不错' : '很好'))))}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 备注区 -->
+  <view class="note-section">
+    <view class="section-label">备注（可选）</view>
+    <textarea 
+      class="note-input"
+      placeholder="记录今天的感受，比如入睡速度、梦境等..."
+      maxlength="200"
+      value="{{note}}"
+      bindinput="onNoteInput"
+    />
+    <view class="note-count">{{note.length}}/200</view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="submit-section">
+    <button 
+      class="btn btn-primary submit-btn {{canSubmit ? '' : 'disabled'}}"
+      bindtap="submitCheckin"
+    >
+      提交打卡
+    </button>
+  </view>
+</view>
