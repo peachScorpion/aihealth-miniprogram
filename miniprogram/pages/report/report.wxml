@@ -1,0 +1,99 @@
+<!-- 食寐有时 - 效果追踪页（Tab） -->
+<view class="page-report">
+  <!-- 顶部统计 -->
+  <view class="report-hero">
+    <view class="report-hero-bg"></view>
+    <view class="report-hero-content">
+      <view class="hero-title">你的睡眠改善报告</view>
+      <view class="hero-period" wx:if="{{report}}">{{report.startDate}} - {{report.endDate}}</view>
+    </view>
+  </view>
+
+  <!-- 数据概览卡片 -->
+  <view wx:if="{{report}}" class="stats-section">
+    <view class="stats-grid">
+      <view class="stat-card">
+        <view class="stat-value">{{report.stats.totalCheckins}}</view>
+        <view class="stat-label">打卡天数</view>
+        <view class="stat-unit">/ 7 天</view>
+      </view>
+      <view class="stat-card accent">
+        <view class="stat-value">{{report.stats.avgSleepScore}}</view>
+        <view class="stat-label">平均睡眠评分</view>
+        <view class="stat-unit">/ 5 分</view>
+      </view>
+    </view>
+
+    <!-- 评分趋势 -->
+    <view class="trend-card">
+      <view class="trend-title">睡眠评分趋势</view>
+      <view class="trend-chart">
+        <view 
+          wx:for="{{report.stats.sleepScoreTrend}}" 
+          wx:key="index"
+          class="trend-bar-wrap"
+        >
+          <view class="trend-bar" style="height: {{item * 40}}rpx">
+            <view class="trend-bar-value">{{item}}</view>
+          </view>
+          <view class="trend-bar-label">D{{index + 1}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 餐食完成率 -->
+    <view class="completion-card">
+      <view class="trend-title">餐食完成率</view>
+      <view class="completion-list">
+        <view class="completion-item">
+          <view class="completion-label">早餐</view>
+          <view class="completion-bar-wrap">
+            <view class="completion-bar" style="width: {{report.stats.mealCompletion.breakfast}}%"></view>
+          </view>
+          <view class="completion-value">{{report.stats.mealCompletion.breakfast}}%</view>
+        </view>
+        <view class="completion-item">
+          <view class="completion-label">午餐</view>
+          <view class="completion-bar-wrap">
+            <view class="completion-bar" style="width: {{report.stats.mealCompletion.lunch}}%"></view>
+          </view>
+          <view class="completion-value">{{report.stats.mealCompletion.lunch}}%</view>
+        </view>
+        <view class="completion-item">
+          <view class="completion-label">晚餐</view>
+          <view class="completion-bar-wrap">
+            <view class="completion-bar" style="width: {{report.stats.mealCompletion.dinner}}%"></view>
+          </view>
+          <view class="completion-value">{{report.stats.mealCompletion.dinner}}%</view>
+        </view>
+        <view class="completion-item">
+          <view class="completion-label">睡前食疗</view>
+          <view class="completion-bar-wrap">
+            <view class="completion-bar" style="width: {{report.stats.mealCompletion.bedtime}}%"></view>
+          </view>
+          <view class="completion-value">{{report.stats.mealCompletion.bedtime}}%</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- AI 改善建议 -->
+    <view class="improvement-card card-green">
+      <view class="improvement-title">AI 改善建议</view>
+      <view class="improvement-text">{{report.improvement}}</view>
+    </view>
+  </view>
+
+  <!-- 未满7天 -->
+  <view wx:if="{{!report && !loading}}" class="empty-state">
+    <view class="empty-state-text">已坚持 {{checkinDays}} 天</view>
+    <view class="empty-state-sub">再坚持 {{7 - checkinDays}} 天即可查看首份报告</view>
+    <view class="encourage-text">坚持就是胜利，加油！</view>
+  </view>
+
+  <!-- 分享按钮 -->
+  <view wx:if="{{report}}" class="share-section">
+    <button class="btn btn-primary share-btn" bindtap="shareReport">
+      分享我的改善报告
+    </button>
+  </view>
+</view>
