@@ -1,0 +1,47 @@
+# 微信小程序
+.DS_Store
+node_modules/
+miniprogram_npm/
+unpackage/
+
+# 云函数
+cloudfunctions/*/node_modules/
+cloudfunctions/*/.env
+
+# 日志文件
+*.log
+npm-debug.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# 临时文件
+*.tmp
+*.temp
+
+# 环境配置
+.env
+.env.local
+.env.*.local
+
+# 敏感信息
+*-secret.*
+*-key.*
+*.pem
+*.key
+
+# 构建输出
+dist/
+build/
+out/
+
+# 测试覆盖率
+coverage/
+
+# 依赖锁定文件（可选）
+# package-lock.json
+# yarn.lock
