@@ -1,0 +1,64 @@
+<!-- 食寐有时 - 免责声明页 -->
+<view class="page-disclaimer">
+  <!-- 顶部引导 -->
+  <view class="disclaimer-header">
+    <view class="header-icon">
+      <view class="shield-shape"></view>
+    </view>
+    <view class="header-title">健康告知</view>
+    <view class="header-desc">使用前请仔细阅读以下声明</view>
+  </view>
+
+  <!-- 声明内容 -->
+  <view class="disclaimer-content">
+    <view class="content-card">
+      <view class="card-title">重要提示</view>
+      <view class="card-text">
+        食寐有时是一款健康膳食食疗助手，提供基于中医体质理论和药食同源知识的饮食调理建议。本产品<text class="highlight-text">不提供医疗诊断、治疗或处方服务</text>。
+      </view>
+    </view>
+
+    <view class="content-card">
+      <view class="card-title">使用须知</view>
+      <view class="card-list">
+        <view class="card-list-item">
+          <text class="list-dot">-</text>
+          <text>所有饮食方案均为调理建议，<text class="highlight-text">不替代专业医疗诊断</text></text>
+        </view>
+        <view class="card-list-item">
+          <text class="list-dot">-</text>
+          <text>如您有严重睡眠障碍、慢性疾病或正在服药，请先咨询医生</text>
+        </view>
+        <view class="card-list-item">
+          <text class="list-dot">-</text>
+          <text>AI 生成的方案基于您提供的症状信息，实际效果因人而异</text>
+        </view>
+        <view class="card-list-item">
+          <text class="list-dot">-</text>
+          <text>如出现任何不适，请立即停止并就医</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="content-card">
+      <view class="card-title">食材安全</view>
+      <view class="card-text">
+        所有推荐食材均来自国家卫健委公布的<text class="highlight-text">食药物质目录</text>，不推荐目录外食材，不推荐药物或保健品。
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部确认 -->
+  <view class="disclaimer-footer">
+    <view class="agree-row" bindtap="toggleAgree">
+      <view class="checkbox {{hasAgreed ? 'checked' : ''}}">
+        <text wx:if="{{hasAgreed}}" class="check-icon">&#10003;</text>
+      </view>
+      <text class="agree-text">我已阅读并理解以上声明</text>
+    </view>
+    
+    <button class="btn btn-primary confirm-btn {{hasAgreed ? '' : 'disabled'}}" bindtap="handleConfirm">
+      确认并继续
+    </button>
+  </view>
+</view>
