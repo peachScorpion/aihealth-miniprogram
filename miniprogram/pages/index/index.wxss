@@ -1,0 +1,285 @@
+/* 食寐有时 - 首页样式 */
+/* Palette: Cinnabar #C7513B, Bamboo #5A7A5A, Indigo #2C4A5A, Moon White #F7F3EC, Paper #FBF8F3, Ink #1C1814, Frost #8B8178, Sandalwood #B8845B, Gold #C4A265 */
+
+.page-index {
+  min-height: 100vh;
+  background: #F7F3EC;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== 背景装饰 ===== */
+.bg-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.06;
+}
+
+.bg-circle-1 {
+  width: 500rpx;
+  height: 500rpx;
+  background: #C7513B;
+  top: -160rpx;
+  right: -120rpx;
+}
+
+.bg-circle-2 {
+  width: 360rpx;
+  height: 360rpx;
+  background: #5A7A5A;
+  bottom: 240rpx;
+  left: -100rpx;
+}
+
+/* ===== 主内容区 ===== */
+.hero-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 48rpx 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* 中式印章 */
+.seal-wrap {
+  margin-bottom: 32rpx;
+}
+
+.seal-border {
+  width: 100rpx;
+  height: 100rpx;
+  border: 4rpx solid #C7513B;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FBF8F3;
+}
+
+.seal-char {
+  font-size: 52rpx;
+  font-weight: 900;
+  color: #C7513B;
+  font-family: "STKaiti", "KaiTi", serif;
+}
+
+.logo-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.logo-text {
+  font-size: 60rpx;
+  font-weight: 800;
+  color: #1C1814;
+  letter-spacing: 12rpx;
+  font-family: "STSong", "Songti SC", "Noto Serif SC", serif;
+}
+
+.logo-subtitle {
+  font-size: 24rpx;
+  color: #8B8178;
+  letter-spacing: 6rpx;
+  margin-top: 8rpx;
+}
+
+.hero-tagline {
+  text-align: center;
+  margin-bottom: 56rpx;
+}
+
+.tagline-main {
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #2C4A5A;
+  letter-spacing: 4rpx;
+}
+
+/* ===== 功能特色卡片 ===== */
+.feature-cards {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  background: #FBF8F3;
+  border-radius: 20rpx;
+  padding: 28rpx 32rpx;
+  border: 1rpx solid rgba(199, 81, 59, 0.08);
+}
+
+.feature-icon-wrap {
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.feature-icon-shape {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 16rpx;
+}
+
+.shape-ai {
+  background: rgba(199, 81, 59, 0.1);
+  border: 2rpx solid rgba(199, 81, 59, 0.25);
+  position: relative;
+}
+
+.shape-ai::after {
+  content: '';
+  position: absolute;
+  top: 16rpx;
+  left: 20rpx;
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 
+    inset 0 -4rpx 0 #C7513B,
+    inset 0 0 0 4rpx transparent;
+  border: 3rpx solid #C7513B;
+}
+
+.shape-trust {
+  background: rgba(184, 133, 91, 0.12);
+  border: 2rpx solid rgba(184, 133, 91, 0.3);
+  position: relative;
+}
+
+.shape-trust::after {
+  content: '';
+  position: absolute;
+  top: 12rpx;
+  left: 20rpx;
+  width: 24rpx;
+  height: 32rpx;
+  border: 3rpx solid #B8845B;
+  border-radius: 6rpx 6rpx 0 0;
+  clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+}
+
+.shape-easy {
+  background: rgba(90, 122, 90, 0.1);
+  border: 2rpx solid rgba(90, 122, 90, 0.25);
+  position: relative;
+}
+
+.shape-easy::after {
+  content: '';
+  position: absolute;
+  top: 20rpx;
+  left: 16rpx;
+  width: 32rpx;
+  height: 20rpx;
+  border: 3rpx solid #5A7A5A;
+  border-radius: 10rpx;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.feature-content {
+  flex: 1;
+}
+
+.feature-text {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1C1814;
+  margin-bottom: 4rpx;
+}
+
+.feature-desc {
+  font-size: 24rpx;
+  color: #8B8178;
+}
+
+/* ===== 底部操作区 ===== */
+.bottom-section {
+  padding: 0 48rpx 80rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.trust-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32rpx;
+}
+
+.trust-icon-shape {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+  border: 2rpx solid #8B8178;
+  border-radius: 6rpx 6rpx 2rpx 2rpx;
+  position: relative;
+}
+
+.trust-icon-shape::after {
+  content: '';
+  position: absolute;
+  top: 4rpx;
+  left: 6rpx;
+  width: 16rpx;
+  height: 12rpx;
+  border-left: 2rpx solid #8B8178;
+  border-bottom: 2rpx solid #8B8178;
+  transform: rotate(-45deg);
+  border-radius: 0;
+}
+
+.trust-text {
+  font-size: 24rpx;
+  color: #8B8178;
+}
+
+.login-btn {
+  width: 100%;
+  height: 104rpx;
+  font-size: 34rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #C7513B;
+  color: #FFFFFF;
+  border-radius: 24rpx;
+  border: none;
+  font-weight: 600;
+}
+
+.login-btn:active {
+  background: #B1402D;
+}
+
+.tips-text {
+  text-align: center;
+  font-size: 22rpx;
+  color: #8B8178;
+  margin-top: 24rpx;
+}
+
+.link-text {
+  color: #C7513B;
+}
