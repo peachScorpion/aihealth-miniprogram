@@ -1,0 +1,97 @@
+<!-- 食寐有时 - 今日方案页（Tab） -->
+<view class="page-plan">
+  <!-- 顶部问候区 -->
+  <view class="greeting-section">
+    <view class="greeting-left">
+      <view class="greeting-info">
+        <view class="greeting-text">早安，{{userName || '朋友'}}</view>
+        <view class="greeting-date">{{todayDate}}</view>
+      </view>
+    </view>
+    <view class="constitution-tag tag tag-primary">
+      {{constitution || '体质未评估'}}
+    </view>
+  </view>
+
+  <!-- 今日方案卡片 -->
+  <view wx:if="{{!planLoading && currentPlan}}" class="plan-section">
+    <view class="section-header">
+      <view class="section-title">今日饮食方案</view>
+      <view class="section-badge" wx:if="{{planVersion > 1}}">已为你微调</view>
+    </view>
+
+    <view class="meals-grid">
+      <meal-card 
+        meal="{{currentPlan.breakfast}}" 
+        mealType="早餐" 
+        icon=""
+        bind:tap="viewMealDetail"
+      />
+      <meal-card 
+        meal="{{currentPlan.lunch}}" 
+        mealType="午餐" 
+        icon=""
+        bind:tap="viewMealDetail"
+      />
+      <meal-card 
+        meal="{{currentPlan.dinner}}" 
+        mealType="晚餐" 
+        icon=""
+        bind:tap="viewMealDetail"
+      />
+      <meal-card 
+        meal="{{currentPlan.bedtime}}" 
+        mealType="睡前食疗" 
+        icon=""
+        bind:tap="viewMealDetail"
+      />
+    </view>
+
+    <!-- 饮食小贴士 -->
+    <view class="tips-card card-warm">
+      <view class="tips-title">今日小贴士</view>
+      <view wx:for="{{currentPlan.tips}}" wx:key="index" class="tips-item">
+        <text class="tips-dot">-</text>
+        <text>{{item}}</text>
+      </view>
+    </view>
+
+    <!-- 免责声明 -->
+    <view class="disclaimer-note">
+      <text>饮食调理建议，不替代医疗诊断</text>
+    </view>
+  </view>
+
+  <!-- 加载态 -->
+  <view wx:if="{{planLoading}}" class="loading-section">
+    <view class="loading-animation">
+      <view class="loading-dot"></view>
+      <view class="loading-dot"></view>
+      <view class="loading-dot"></view>
+    </view>
+    <view class="loading-text">正在为你生成专属方案...</view>
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:if="{{!planLoading && !currentPlan}}" class="empty-state">
+    <view class="empty-state-text">尚未完成体质评估</view>
+    <button class="btn btn-primary btn-sm mt-lg" bindtap="goAssessment">
+      开始评估
+    </button>
+  </view>
+
+  <!-- 底部打卡按钮 -->
+  <view wx:if="{{currentPlan}}" class="checkin-bar">
+    <view class="checkin-status" wx:if="{{todayChecked}}">
+      <text class="checkin-done-icon">&#10003;</text>
+      <text>今日已完成打卡</text>
+    </view>
+    <button 
+      wx:else
+      class="btn btn-primary checkin-btn"
+      bindtap="goCheckin"
+    >
+      去打卡
+    </button>
+  </view>
+</view>
