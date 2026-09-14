@@ -1,0 +1,63 @@
+<!-- 食寐有时 - AI 智能提醒 -->
+<view class="page-reminder">
+  <!-- 顶部标题 -->
+  <view class="reminder-header">
+    <view class="header-title">AI 智能提醒</view>
+    <view class="header-subtitle">设置定时推送，不错过每个调理方案</view>
+  </view>
+
+  <!-- 提醒列表 -->
+  <view class="reminder-list">
+    <view class="reminder-item" wx:for="{{reminders}}" wx:key="id">
+      <view class="reminder-left">
+        <view class="reminder-icon-wrap icon-{{item.id}}">
+          <view class="reminder-icon-shape"></view>
+        </view>
+        <view class="reminder-info">
+          <view class="reminder-name">{{item.name}}</view>
+          <view class="reminder-desc">{{item.desc}}</view>
+        </view>
+      </view>
+      <view class="reminder-right">
+        <switch 
+          checked="{{item.enabled}}" 
+          color="#C7513B"
+          bindchange="toggleReminder"
+          data-id="{{item.id}}"
+        />
+      </view>
+    </view>
+  </view>
+
+  <!-- 时间设置 -->
+  <view class="time-section">
+    <view class="section-title">推送时间</view>
+    <view class="time-list">
+      <view class="time-item" wx:for="{{reminders}}" wx:key="id" wx:if="{{item.enabled}}">
+        <view class="time-label">{{item.name}}</view>
+        <picker 
+          mode="time" 
+          value="{{item.time}}" 
+          bindchange="onTimeChange"
+          data-id="{{item.id}}"
+        >
+          <view class="time-picker">
+            <text>{{item.time}}</text>
+            <text class="time-arrow">&gt;</text>
+          </view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作 -->
+  <view class="action-section">
+    <button 
+      class="subscribe-all-btn"
+      bindtap="subscribeAll"
+    >
+      订阅所有消息
+    </button>
+    <view class="action-hint">开启后将通过微信服务通知推送提醒</view>
+  </view>
+</view>
