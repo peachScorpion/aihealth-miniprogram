@@ -1,0 +1,265 @@
+/* 食寐有时 - AI 智能问诊样式 */
+/* Palette: Cinnabar #C7513B, Indigo #2C4A5A, Moon White #F7F3EC, Paper #FBF8F3, Ink #1C1814, Frost #8B8178 */
+
+.page-diagnosis {
+  min-height: 100vh;
+  background: #F7F3EC;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40rpx;
+}
+
+/* ===== 顶部标题 ===== */
+.diagnosis-header {
+  padding: 40rpx 32rpx 24rpx;
+  background: linear-gradient(180deg, #FBF8F3 0%, #F7F3EC 100%);
+}
+
+.header-title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #2C4A5A;
+  margin-bottom: 8rpx;
+}
+
+.header-subtitle {
+  font-size: 26rpx;
+  color: #8B8178;
+}
+
+/* ===== 对话区域 ===== */
+.chat-section {
+  flex: 1;
+  padding: 0 32rpx;
+  overflow-y: auto;
+}
+
+.chat-bubble {
+  display: flex;
+  margin-bottom: 24rpx;
+  align-items: flex-start;
+}
+
+.user-bubble {
+  flex-direction: row-reverse;
+}
+
+.bubble-avatar {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22rpx;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.ai-avatar {
+  background: rgba(199, 81, 59, 0.1);
+  color: #C7513B;
+  margin-right: 16rpx;
+}
+
+.user-avatar {
+  background: rgba(44, 74, 90, 0.1);
+  color: #2C4A5A;
+  margin-left: 16rpx;
+}
+
+.bubble-content {
+  max-width: 500rpx;
+}
+
+.bubble-text {
+  background: #FBF8F3;
+  border-radius: 20rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  color: #1C1814;
+  line-height: 1.6;
+  border: 1rpx solid rgba(199, 81, 59, 0.06);
+}
+
+.user-bubble .bubble-text {
+  background: rgba(199, 81, 59, 0.08);
+  border: 1rpx solid rgba(199, 81, 59, 0.15);
+}
+
+/* 输入中动画 */
+.typing-indicator {
+  display: flex;
+  gap: 8rpx;
+  padding: 20rpx 24rpx;
+  background: #FBF8F3;
+  border-radius: 20rpx;
+  border: 1rpx solid rgba(199, 81, 59, 0.06);
+}
+
+.typing-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #C7513B;
+  animation: typing-bounce 1.4s infinite ease-in-out both;
+}
+
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+.typing-dot:nth-child(3) { animation-delay: 0s; }
+
+@keyframes typing-bounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* ===== 诊断结果 ===== */
+.result-card {
+  background: #FBF8F3;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-top: 16rpx;
+  margin-bottom: 24rpx;
+  border: 1rpx solid rgba(199, 81, 59, 0.1);
+}
+
+.result-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #C7513B;
+  margin-bottom: 24rpx;
+  text-align: center;
+}
+
+.result-constitution,
+.result-detail,
+.result-suggestion {
+  margin-bottom: 20rpx;
+}
+
+.result-label {
+  font-size: 24rpx;
+  color: #8B8178;
+  margin-bottom: 8rpx;
+  font-weight: 500;
+}
+
+.result-constitution .result-value {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #C7513B;
+}
+
+.result-detail .result-value,
+.result-suggestion .result-value {
+  font-size: 28rpx;
+  color: #1C1814;
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
+/* ===== 快捷症状标签 ===== */
+.quick-tags {
+  padding: 0 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.tags-title {
+  font-size: 24rpx;
+  color: #8B8178;
+  margin-bottom: 16rpx;
+  font-weight: 500;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14rpx;
+}
+
+.tag-item {
+  font-size: 26rpx;
+  color: #2C4A5A;
+  background: #FBF8F3;
+  border: 2rpx solid #E8E0D6;
+  border-radius: 999rpx;
+  padding: 10rpx 24rpx;
+  transition: all 0.2s;
+}
+
+.tag-item.active {
+  background: rgba(199, 81, 59, 0.08);
+  border-color: #C7513B;
+  color: #C7513B;
+  font-weight: 500;
+}
+
+/* ===== 输入区域 ===== */
+.input-section {
+  padding: 20rpx 32rpx 0;
+}
+
+.input-row {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.symptom-input {
+  flex: 1;
+  height: 80rpx;
+  background: #FBF8F3;
+  border-radius: 20rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  color: #1C1814;
+  border: 2rpx solid #E8E0D6;
+}
+
+.symptom-input:focus {
+  border-color: #C7513B;
+}
+
+.send-btn {
+  width: 120rpx;
+  height: 80rpx;
+  background: #C7513B;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 20rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-btn:active {
+  background: #B1402D;
+}
+
+.send-btn[disabled] {
+  background: #E0D5C8;
+  color: #B8A99A;
+}
+
+.diagnose-btn {
+  width: 100%;
+  height: 96rpx;
+  font-size: 34rpx;
+  background: #C7513B;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 24rpx;
+  font-weight: 600;
+}
+
+.diagnose-btn:active {
+  background: #B1402D;
+}
+
+.diagnose-btn[disabled] {
+  background: #E0D5C8;
+  color: #B8A99A;
+}
