@@ -1,0 +1,165 @@
+<!-- 食寐有时 - 我的页面（Tab） -->
+<view class="page-user">
+  <!-- 个人信息卡片 -->
+  <view class="profile-card">
+    <view class="profile-bg"></view>
+    <view class="profile-content">
+      <view class="avatar-wrap">
+        <image class="avatar" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" mode="aspectFill" />
+      </view>
+      <view class="profile-info">
+        <view class="profile-name">{{userInfo.nickName || '食寐有时用户'}}</view>
+        <view class="profile-constitution" wx:if="{{constitution}}">
+          <text class="constitution-badge">{{constitution}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 数据概览 -->
+  <view class="data-section">
+    <view class="data-row">
+      <view class="data-item">
+        <view class="data-value">{{totalCheckins}}</view>
+        <view class="data-label">累计打卡</view>
+      </view>
+      <view class="data-divider"></view>
+      <view class="data-item">
+        <view class="data-value">{{consecutiveDays}}</view>
+        <view class="data-label">连续天数</view>
+      </view>
+      <view class="data-divider"></view>
+      <view class="data-item">
+        <view class="data-value">{{planVersion || 1}}</view>
+        <view class="data-label">方案版本</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 消息提醒设置 -->
+  <view class="menu-section">
+    <view class="menu-title">消息提醒</view>
+    
+    <view class="menu-card">
+      <view class="menu-item" bindtap="toggleReminder" data-type="morning">
+        <view class="menu-left">
+          <view class="menu-icon-wrap icon-morning">
+            <view class="menu-icon-shape"></view>
+          </view>
+          <view class="menu-text">
+            <view class="menu-label">每日方案提醒</view>
+            <view class="menu-desc">每天早上 8:00 推送今日方案</view>
+          </view>
+        </view>
+        <switch checked="{{reminders.morning}}" color="#C7513B" />
+      </view>
+
+      <view class="menu-item" bindtap="toggleReminder" data-type="evening">
+        <view class="menu-left">
+          <view class="menu-icon-wrap icon-evening">
+            <view class="menu-icon-shape"></view>
+          </view>
+          <view class="menu-text">
+            <view class="menu-label">睡前打卡提醒</view>
+            <view class="menu-desc">每天晚上 20:00 提醒打卡</view>
+          </view>
+        </view>
+        <switch checked="{{reminders.evening}}" color="#C7513B" />
+      </view>
+
+      <view class="menu-item" bindtap="toggleReminder" data-type="weekly">
+        <view class="menu-left">
+          <view class="menu-icon-wrap icon-weekly">
+            <view class="menu-icon-shape"></view>
+          </view>
+          <view class="menu-text">
+            <view class="menu-label">周报推送</view>
+            <view class="menu-desc">每 7 天生成效果报告时推送</view>
+          </view>
+        </view>
+        <switch checked="{{reminders.weekly}}" color="#C7513B" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能菜单 -->
+  <view class="menu-section">
+    <view class="menu-title">功能</view>
+    
+    <view class="menu-card">
+      <view class="menu-item" bindtap="reAssessment">
+        <view class="menu-left">
+          <view class="menu-icon-wrap icon-reassess">
+            <view class="menu-icon-shape"></view>
+          </view>
+          <view class="menu-text">
+            <view class="menu-label">重新评估体质</view>
+            <view class="menu-desc">更新你的体质和症状信息</view>
+          </view>
+        </view>
+        <view class="menu-arrow">&gt;</view>
+      </view>
+
+      <view class="menu-item" bindtap="viewHistory">
+        <view class="menu-left">
+          <view class="menu-icon-wrap icon-history">
+            <view class="menu-icon-shape"></view>
+          </view>
+          <view class="menu-text">
+            <view class="menu-label">历史记录</view>
+            <view class="menu-desc">查看过往方案和打卡记录</view>
+          </view>
+        </view>
+        <view class="menu-arrow">&gt;</view>
+      </view>
+
+      <view class="menu-item" bindtap="subscribeAll">
+        <view class="menu-left">
+          <view class="menu-icon-wrap icon-subscribe">
+            <view class="menu-icon-shape"></view>
+          </view>
+          <view class="menu-text">
+            <view class="menu-label">订阅所有消息</view>
+            <view class="menu-desc">一键开启全部提醒，不错过任何推送</view>
+          </view>
+        </view>
+        <view class="menu-arrow">&gt;</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 关于 -->
+  <view class="menu-section">
+    <view class="menu-title">关于</view>
+    
+    <view class="menu-card">
+      <view class="menu-item" bindtap="showDisclaimer">
+        <view class="menu-left">
+          <view class="menu-icon-wrap icon-shield">
+            <view class="menu-icon-shape"></view>
+          </view>
+          <view class="menu-text">
+            <view class="menu-label">免责声明</view>
+          </view>
+        </view>
+        <view class="menu-arrow">&gt;</view>
+      </view>
+
+      <view class="menu-item">
+        <view class="menu-left">
+          <view class="menu-icon-wrap icon-feedback">
+            <view class="menu-icon-shape"></view>
+          </view>
+          <view class="menu-text">
+            <view class="menu-label">反馈建议</view>
+            <view class="menu-desc">帮助我们做得更好</view>
+          </view>
+        </view>
+        <view class="menu-arrow">&gt;</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 版本号 -->
+  <view class="version-text">食寐有时 v1.0.0</view>
+</view>
