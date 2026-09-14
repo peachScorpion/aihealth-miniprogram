@@ -1,0 +1,341 @@
+/* 食寐有时 - 我的页面样式 */
+/* Palette: Cinnabar #C7513B, Indigo #2C4A5A, Moon White #F7F3EC, Paper #FBF8F3, Ink #1C1814, Frost #8B8178, Sandalwood #B8845B */
+
+.page-user {
+  min-height: 100vh;
+  background: #F7F3EC;
+  padding-bottom: 60rpx;
+}
+
+/* ===== 个人信息卡片 ===== */
+.profile-card {
+  position: relative;
+  margin: 0 32rpx;
+  margin-top: 32rpx;
+  border-radius: 28rpx;
+  overflow: hidden;
+}
+
+.profile-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #2C4A5A 0%, #3A5A6A 100%);
+}
+
+.profile-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  padding: 40rpx 36rpx;
+}
+
+.avatar-wrap {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  border: 4rpx solid rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 10rpx;
+}
+
+.constitution-badge {
+  font-size: 24rpx;
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 4rpx 20rpx;
+  border-radius: 999rpx;
+}
+
+/* ===== 数据概览 ===== */
+.data-section {
+  margin: -24rpx 32rpx 28rpx;
+  position: relative;
+  z-index: 2;
+}
+
+.data-row {
+  display: flex;
+  align-items: center;
+  background: #FBF8F3;
+  border-radius: 24rpx;
+  padding: 28rpx 20rpx;
+  border: 1rpx solid rgba(199, 81, 59, 0.06);
+}
+
+.data-item {
+  flex: 1;
+  text-align: center;
+}
+
+.data-value {
+  font-size: 40rpx;
+  font-weight: 800;
+  color: #C7513B;
+  margin-bottom: 6rpx;
+}
+
+.data-label {
+  font-size: 24rpx;
+  color: #8B8178;
+}
+
+.data-divider {
+  width: 1rpx;
+  height: 48rpx;
+  background: #E8E0D6;
+}
+
+/* ===== 菜单区域 ===== */
+.menu-section {
+  padding: 0 32rpx;
+  margin-bottom: 28rpx;
+}
+
+.menu-title {
+  font-size: 24rpx;
+  color: #8B8178;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+  padding-left: 8rpx;
+}
+
+.menu-card {
+  background: #FBF8F3;
+  border-radius: 24rpx;
+  overflow: hidden;
+  border: 1rpx solid rgba(199, 81, 59, 0.06);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx 28rpx;
+  border-bottom: 1rpx solid #F7F3EC;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item:active {
+  background: rgba(199, 81, 59, 0.03);
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.menu-icon-wrap {
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.menu-icon-shape {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 16rpx;
+}
+
+/* Morning icon */
+.icon-morning .menu-icon-shape {
+  background: rgba(199, 81, 59, 0.08);
+  border: 2rpx solid rgba(199, 81, 59, 0.2);
+  position: relative;
+}
+
+.icon-morning .menu-icon-shape::after {
+  content: '';
+  position: absolute;
+  top: 12rpx;
+  left: 16rpx;
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  border: 2rpx solid #C7513B;
+  background: transparent;
+  box-shadow: 0 0 0 6rpx rgba(199, 81, 59, 0.1);
+}
+
+/* Evening icon */
+.icon-evening .menu-icon-shape {
+  background: rgba(44, 74, 90, 0.08);
+  border: 2rpx solid rgba(44, 74, 90, 0.2);
+  position: relative;
+}
+
+.icon-evening .menu-icon-shape::after {
+  content: '';
+  position: absolute;
+  top: 14rpx;
+  left: 14rpx;
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 50%;
+  border: 2rpx solid #2C4A5A;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  background: transparent;
+  box-shadow: inset -4rpx -4rpx 0 0 transparent;
+}
+
+/* Weekly icon */
+.icon-weekly .menu-icon-shape {
+  background: rgba(90, 122, 90, 0.08);
+  border: 2rpx solid rgba(90, 122, 90, 0.2);
+  position: relative;
+}
+
+.icon-weekly .menu-icon-shape::after {
+  content: '';
+  position: absolute;
+  top: 12rpx;
+  left: 12rpx;
+  width: 28rpx;
+  height: 28rpx;
+  border: 2rpx solid #5A7A5A;
+  border-radius: 4rpx;
+}
+
+/* Reassess icon */
+.icon-reassess .menu-icon-shape {
+  background: rgba(184, 133, 91, 0.08);
+  border: 2rpx solid rgba(184, 133, 91, 0.2);
+  position: relative;
+}
+
+.icon-reassess .menu-icon-shape::after {
+  content: '';
+  position: absolute;
+  top: 14rpx;
+  left: 19rpx;
+  width: 16rpx;
+  height: 24rpx;
+  border: 2rpx solid #B8845B;
+  border-radius: 4rpx;
+}
+
+/* History icon */
+.icon-history .menu-icon-shape {
+  background: rgba(199, 81, 59, 0.08);
+  border: 2rpx solid rgba(199, 81, 59, 0.2);
+  position: relative;
+}
+
+.icon-history .menu-icon-shape::after {
+  content: '';
+  position: absolute;
+  top: 14rpx;
+  left: 14rpx;
+  width: 24rpx;
+  height: 24rpx;
+  border: 2rpx solid #C7513B;
+  border-radius: 6rpx;
+}
+
+/* Subscribe icon */
+.icon-subscribe .menu-icon-shape {
+  background: rgba(44, 74, 90, 0.08);
+  border: 2rpx solid rgba(44, 74, 90, 0.2);
+  position: relative;
+}
+
+.icon-subscribe .menu-icon-shape::after {
+  content: '';
+  position: absolute;
+  top: 16rpx;
+  left: 16rpx;
+  width: 20rpx;
+  height: 20rpx;
+  border: 2rpx solid #2C4A5A;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4rpx rgba(44, 74, 90, 0.1);
+}
+
+/* Shield icon */
+.icon-shield .menu-icon-shape {
+  background: rgba(199, 81, 59, 0.08);
+  border: 2rpx solid rgba(199, 81, 59, 0.2);
+  position: relative;
+}
+
+.icon-shield .menu-icon-shape::after {
+  content: '';
+  position: absolute;
+  top: 10rpx;
+  left: 16rpx;
+  width: 20rpx;
+  height: 28rpx;
+  border: 2rpx solid #C7513B;
+  border-radius: 6rpx 6rpx 12rpx 12rpx;
+}
+
+/* Feedback icon */
+.icon-feedback .menu-icon-shape {
+  background: rgba(184, 133, 91, 0.08);
+  border: 2rpx solid rgba(184, 133, 91, 0.2);
+  position: relative;
+}
+
+.icon-feedback .menu-icon-shape::after {
+  content: '';
+  position: absolute;
+  top: 14rpx;
+  left: 14rpx;
+  width: 24rpx;
+  height: 24rpx;
+  border: 2rpx solid #B8845B;
+  border-radius: 4rpx;
+}
+
+.menu-text {
+  flex: 1;
+}
+
+.menu-label {
+  font-size: 30rpx;
+  color: #2C4A5A;
+  font-weight: 500;
+}
+
+.menu-desc {
+  font-size: 24rpx;
+  color: #8B8178;
+  margin-top: 4rpx;
+}
+
+.menu-arrow {
+  font-size: 36rpx;
+  color: #D0C5B8;
+  margin-left: 12rpx;
+}
+
+/* ===== 版本号 ===== */
+.version-text {
+  text-align: center;
+  font-size: 22rpx;
+  color: #8B8178;
+  padding: 32rpx 0;
+}
