@@ -1,0 +1,171 @@
+/* 食寐有时 - 免责声明页样式 */
+/* Palette: Cinnabar #C7513B, Indigo #2C4A5A, Moon White #F7F3EC, Paper #FBF8F3, Ink #1C1814, Frost #8B8178 */
+
+.page-disclaimer {
+  min-height: 100vh;
+  background: #F7F3EC;
+  display: flex;
+  flex-direction: column;
+  padding: 0 32rpx;
+}
+
+.disclaimer-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 0 40rpx;
+}
+
+.header-icon {
+  margin-bottom: 16rpx;
+}
+
+.shield-shape {
+  width: 64rpx;
+  height: 72rpx;
+  background: rgba(199, 81, 59, 0.1);
+  border: 3rpx solid #C7513B;
+  border-radius: 8rpx 8rpx 16rpx 16rpx;
+  position: relative;
+}
+
+.shield-shape::after {
+  content: '';
+  position: absolute;
+  top: 10rpx;
+  left: 14rpx;
+  width: 30rpx;
+  height: 24rpx;
+  border-left: 3rpx solid #C7513B;
+  border-bottom: 3rpx solid #C7513B;
+  transform: rotate(-45deg);
+}
+
+.header-title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #2C4A5A;
+  margin-bottom: 8rpx;
+}
+
+.header-desc {
+  font-size: 26rpx;
+  color: #8B8178;
+}
+
+/* ===== 声明内容 ===== */
+.disclaimer-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 32rpx;
+}
+
+.content-card {
+  background: #FBF8F3;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 20rpx;
+  border: 1rpx solid rgba(199, 81, 59, 0.06);
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2C4A5A;
+  margin-bottom: 16rpx;
+  padding-left: 16rpx;
+  border-left: 6rpx solid #C7513B;
+}
+
+.card-text {
+  font-size: 28rpx;
+  color: #1C1814;
+  line-height: 1.8;
+  opacity: 0.85;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.card-list-item {
+  display: flex;
+  font-size: 28rpx;
+  color: #1C1814;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+.list-dot {
+  color: #C7513B;
+  margin-right: 12rpx;
+  font-weight: 700;
+}
+
+.highlight-text {
+  color: #C7513B;
+  font-weight: 600;
+}
+
+/* ===== 底部确认 ===== */
+.disclaimer-footer {
+  padding: 32rpx 0 60rpx;
+  background: linear-gradient(0deg, #F7F3EC 80%, transparent);
+}
+
+.agree-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 28rpx;
+  padding: 0 8rpx;
+}
+
+.checkbox {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 10rpx;
+  border: 3rpx solid #D0C5B8;
+  margin-right: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.checkbox.checked {
+  background: #C7513B;
+  border-color: #C7513B;
+}
+
+.check-icon {
+  color: #FFFFFF;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.agree-text {
+  font-size: 28rpx;
+  color: #1C1814;
+}
+
+.confirm-btn {
+  width: 100%;
+  height: 96rpx;
+  font-size: 34rpx;
+  background: #C7513B;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 24rpx;
+  font-weight: 600;
+}
+
+.confirm-btn:active {
+  background: #B1402D;
+}
+
+.confirm-btn.disabled {
+  background: #E0D5C8;
+  color: #B8A99A;
+}
