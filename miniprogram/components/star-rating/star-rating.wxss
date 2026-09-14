@@ -1,0 +1,20 @@
+/* 星级评分组件样式 */
+.star-rating {
+  display: flex;
+  gap: 16rpx;
+}
+
+.star {
+  font-size: 64rpx;
+  color: #E0D5C8;
+  transition: all 0.2s ease;
+}
+
+.star:active {
+  transform: scale(1.2);
+}
+
+.star.active {
+  color: #F5C542;
+  text-shadow: 0 4rpx 12rpx rgba(245, 197, 66, 0.3);
+}
