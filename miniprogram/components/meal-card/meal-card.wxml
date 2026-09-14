@@ -1,0 +1,23 @@
+<!-- 餐食卡片组件 -->
+<view class="meal-card" bindtap="onTap">
+  <view class="meal-header">
+    <view class="meal-icon">{{icon}}</view>
+    <view class="meal-type">{{mealType}}</view>
+    <view class="meal-time">{{mealType === '睡前食疗' ? '睡前1小时' : (mealType === '早餐' ? '7:00-8:00' : (mealType === '午餐' ? '12:00-13:00' : '18:00-19:00'))}}</view>
+  </view>
+  
+  <view class="meal-body">
+    <view class="meal-name">{{meal.name || '加载中...'}}</view>
+    <view class="meal-ingredients">
+      <text wx:for="{{meal.ingredients}}" wx:key="index" class="ingredient-tag">{{item}}</text>
+    </view>
+    <view class="meal-reason" wx:if="{{meal.reason}}">
+      <text class="reason-label">食疗原理</text>
+      <text class="reason-text">{{meal.reason}}</text>
+    </view>
+  </view>
+
+  <view class="meal-footer">
+    <text class="meal-more">查看做法 →</text>
+  </view>
+</view>
