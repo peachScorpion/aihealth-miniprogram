@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>食寐有时 · 用户操作路径业务流程图</title>
+<style>
+  :root {
+    color-scheme: light;
+    --surface: #F7F7F8;
+    --surface-muted: #EFEFF2;
+    --text: #171717;
+    --text-muted: #52525B;
+    --border: rgba(23, 23, 23, 0.12);
+    --brand: #4B3FE3;
+    --brand-soft: #F2F7FF;
+    --brand-soft-strong: #E5EAFF;
+    --brand-text: #1A1759;
+    --brand-on: #FFFFFF;
+    --chart-series-1: #3C2ECA;
+    --chart-series-2: #A9AEFF;
+    --chart-series-3: #6F6FFF;
+    --chart-series-4: #22A5F7;
+    --chart-other: #D3D4DA;
+    --accent: #27D2BF;
+    --accent-2: #F87454;
+    --accent-soft: #EAFBF8;
+    --accent-text: #0F766E;
+    --success: #1DC981;
+    --warning: #EFAA17;
+    --danger: #E8463A;
+    --radius: 8px;
+    --radius-card: 12px;
+    --radius-full: 999px;
+    --spacer-4: 4px;
+    --spacer-8: 8px;
+    --spacer-12: 12px;
+    --spacer-16: 16px;
+    --spacer-20: 20px;
+    --spacer-24: 24px;
+    --font-sans: "SF Pro Text", "PingFang SC", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-metric: "Inter", "SF Pro Text", "PingFang SC", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-strong: 600;
+    --text-caption: 12px/18px;
+    --text-body: 14px/20px;
+    --text-title: 16px/24px;
+    --text-code: 13px/20px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --surface: #171717;
+      --surface-muted: #262626;
+      --text: #E5E5E5;
+      --text-muted: #A1A1AA;
+      --border: rgba(229, 229, 229, 0.12);
+      --brand: #6054F1;
+      --brand-soft: #1A1759;
+      --brand-soft-strong: #3C2ECA;
+      --brand-text: #CFD8FF;
+      --chart-series-1: #4B3FE3;
+      --accent-2: #F87454;
+      --accent-soft: #123F3C;
+      --accent-text: #CCFBF1;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--surface);
+    color: var(--text);
+    font: var(--weight-regular) var(--text-body) var(--font-sans);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  .container {
+    max-width: 960px;
+    width: 100%;
+    background: #fff;
+    border-radius: var(--radius-card);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    padding: var(--spacer-24);
+  }
+  @media (prefers-color-scheme: dark) {
+    .container { background: #1c1c1c; }
+  }
+  .header {
+    margin-bottom: var(--spacer-20);
+  }
+  .header h1 {
+    font: var(--weight-strong) var(--text-title) var(--font-sans);
+    color: var(--text);
+    margin-bottom: var(--spacer-4);
+  }
+  .header p {
+    font: var(--weight-regular) var(--text-caption) var(--font-sans);
+    color: var(--text-muted);
+  }
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>食寐有时 · 用户操作路径业务流程图</h1>
+    <p>验证 MVP 核心闭环：评估 → 方案 → 打卡 → 追踪 → 迭代</p>
+  </div>
+
+<svg viewBox="0 0 720 880" xmlns="http://www.w3.org/2000/svg">
+
+<defs>
+  <marker id="arr-down" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M1 1 L7 4 L1 7 Z" fill="var(--text-muted)"/>
+  </marker>
+  <marker id="arr-brand" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M1 1 L7 4 L1 7 Z" fill="var(--brand)"/>
+  </marker>
+  <marker id="arr-danger" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M1 1 L7 4 L1 7 Z" fill="var(--danger)"/>
+  </marker>
+  <marker id="arr-left" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
+    <path d="M7 1 L1 4 L7 7 Z" fill="var(--text-muted)"/>
+  </marker>
+</defs>
+
+<style>
+  .t { fill: var(--text); font: var(--weight-regular) 14px/20px var(--font-sans); }
+  .th { fill: var(--text); font: var(--weight-medium) 14px/20px var(--font-sans); }
+  .ts { fill: var(--text-muted); font: var(--weight-regular) 12px/18px var(--font-sans); }
+  .arr { stroke: var(--text-muted); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+  .leader { stroke: var(--text-muted); stroke-width: 0.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 4 4; fill: none; }
+  .node-label { text-anchor: middle; dominant-baseline: central; }
+  .right-label { text-anchor: start; dominant-baseline: central; }
+  .phase-label { fill: var(--text-muted); font: var(--weight-medium) 12px/18px var(--font-sans); }
+  .flow-title { fill: var(--text); font: var(--weight-strong) 16px/24px var(--font-sans); }
+  .flow-subtitle { fill: var(--text-muted); font: var(--weight-regular) 12px/18px var(--font-sans); }
+  .c-neutral-rect { fill: var(--surface); stroke: var(--border); }
+  .c-brand-rect { fill: var(--brand-soft); stroke: var(--brand); }
+  .c-brand-text { fill: var(--brand-text); }
+  .c-brand-ts { fill: var(--brand); }
+  .c-danger-rect { fill: color-mix(in srgb, var(--danger) 14%, transparent); stroke: var(--danger); }
+</style>
+
+<!-- Title -->
+<text x="48" y="46" class="flow-title">食寐有时 · 用户操作路径业务流程图</text>
+<text x="48" y="66" class="flow-subtitle">验证 MVP 核心闭环：评估 → 方案 → 打卡 → 追踪 → 迭代</text>
+
+<!-- Phase labels -->
+<text x="48" y="108" class="phase-label">PHASE 1</text>
+<text x="48" y="228" class="phase-label">PHASE 2</text>
+<text x="48" y="392" class="phase-label">PHASE 3</text>
+<text x="48" y="588" class="phase-label">PHASE 4</text>
+
+<!-- Phase dividers -->
+<line x1="48" y1="120" x2="672" y2="120" class="leader"/>
+<line x1="48" y1="240" x2="672" y2="240" class="leader"/>
+<line x1="48" y1="560" x2="672" y2="560" class="leader"/>
+
+<!-- ===== PHASE 1: 进入与授权 ===== -->
+<text x="48" y="260" class="phase-label">评估与</text>
+<text x="48" y="278" class="phase-label">方案生成</text>
+
+<!-- 1. Start -->
+<rect x="280" y="134" width="160" height="32" rx="16" class="c-neutral-rect"/>
+<text x="360" y="150" class="t node-label">进入食寐有时</text>
+
+<!-- 2. Auth -->
+<rect x="270" y="186" width="180" height="38" rx="8" class="c-neutral-rect"/>
+<text x="360" y="205" class="t node-label">微信授权登录</text>
+
+<!-- 3. Disclaimer -->
+<rect x="270" y="244" width="180" height="38" rx="8" class="c-neutral-rect"/>
+<text x="360" y="263" class="t node-label">确认免责声明</text>
+
+<!-- 4. Decision: Agree? -->
+<polygon points="360,302 396,328 360,354 324,328" class="c-neutral-rect"/>
+<text x="360" y="326" class="ts node-label">同意?</text>
+
+<!-- Branch: Exit -->
+<rect x="110" y="310" width="80" height="36" rx="8" class="c-neutral-rect"/>
+<text x="150" y="328" class="ts node-label">退出</text>
+
+<!-- Connectors Phase 1 -->
+<line x1="360" y1="166" x2="360" y2="186" class="arr" marker-end="url(#arr-down)"/>
+<line x1="360" y1="224" x2="360" y2="244" class="arr" marker-end="url(#arr-down)"/>
+<line x1="360" y1="282" x2="360" y2="302" class="arr" marker-end="url(#arr-down)"/>
+<line x1="324" y1="328" x2="190" y2="328" class="arr" marker-end="url(#arr-left)"/>
+<text x="257" y="320" class="ts">否</text>
+<line x1="360" y1="354" x2="360" y2="374" class="arr" marker-end="url(#arr-down)"/>
+<text x="372" y="366" class="ts right-label">是</text>
+
+<!-- ===== PHASE 2: 评估与方案 ===== -->
+
+<!-- 5. Assessment -->
+<rect x="270" y="376" width="180" height="38" rx="8" class="c-neutral-rect"/>
+<text x="360" y="395" class="t node-label">体质评估问卷 (5-10题)</text>
+
+<!-- 6. AI Plan -->
+<rect x="270" y="434" width="180" height="38" rx="8" class="c-brand-rect"/>
+<text x="360" y="453" class="t c-brand-text node-label">AI 生成个性化助眠方案</text>
+
+<!-- 7. Decision: AI Success? -->
+<polygon points="360,492 396,518 360,544 324,518" class="c-neutral-rect"/>
+<text x="360" y="516" class="ts node-label">方案生成?</text>
+
+<!-- Branch: Fallback -->
+<rect x="72" y="500" width="140" height="36" rx="8" class="c-neutral-rect"/>
+<text x="142" y="518" class="ts node-label">精选方案库兜底</text>
+
+<!-- Connectors Phase 2 -->
+<line x1="360" y1="414" x2="360" y2="434" class="arr" marker-end="url(#arr-down)"/>
+<line x1="360" y1="472" x2="360" y2="492" class="arr" marker-end="url(#arr-down)"/>
+<line x1="324" y1="518" x2="212" y2="518" class="arr" marker-end="url(#arr-left)"/>
+<text x="268" y="510" class="ts">失败</text>
+<line x1="142" y1="500" x2="142" y2="480" class="leader"/>
+<line x1="142" y1="480" x2="270" y2="480" class="leader"/>
+<line x1="270" y1="480" x2="270" y2="395" class="leader" marker-end="url(#arr-down)"/>
+<text x="206" y="474" class="ts">兜底方案替代</text>
+<line x1="360" y1="544" x2="360" y2="564" class="arr" marker-end="url(#arr-down)"/>
+<text x="372" y="556" class="ts right-label">成功</text>
+
+<!-- ===== PHASE 3: 每日执行 ===== -->
+<text x="48" y="430" class="phase-label">每日</text>
+<text x="48" y="448" class="phase-label">执行</text>
+
+<!-- 8. View Plan -->
+<rect x="270" y="576" width="180" height="38" rx="8" class="c-neutral-rect"/>
+<text x="360" y="595" class="t node-label">查看每日饮食方案</text>
+
+<!-- 9. Check-in + Score -->
+<rect x="270" y="634" width="180" height="38" rx="8" class="c-neutral-rect"/>
+<text x="360" y="653" class="t node-label">每日打卡 + 睡眠评分 (1-5)</text>
+
+<!-- Connectors Phase 3 -->
+<line x1="360" y1="614" x2="360" y2="634" class="arr" marker-end="url(#arr-down)"/>
+
+<!-- ===== PHASE 4: 追踪与迭代 ===== -->
+<text x="48" y="578" class="phase-label">效果</text>
+<text x="48" y="596" class="phase-label">追踪</text>
+
+<!-- 10. Decision: 7 days? -->
+<polygon points="360,692 396,718 360,744 324,718" class="c-neutral-rect"/>
+<text x="360" y="716" class="ts node-label">累计 7 天?</text>
+
+<!-- 11. Report -->
+<rect x="270" y="766" width="180" height="38" rx="8" class="c-brand-rect"/>
+<text x="360" y="785" class="t c-brand-text node-label">生成 7 天效果报告</text>
+
+<!-- 12. Adjust -->
+<rect x="270" y="824" width="180" height="38" rx="8" class="c-brand-rect"/>
+<text x="360" y="843" class="t c-brand-text node-label">AI 自动微调方案</text>
+
+<!-- Connectors Phase 4 -->
+<line x1="360" y1="672" x2="360" y2="692" class="arr" marker-end="url(#arr-down)"/>
+<line x1="360" y1="744" x2="360" y2="766" class="arr" marker-end="url(#arr-down)"/>
+<text x="372" y="757" class="ts right-label">是</text>
+<line x1="360" y1="804" x2="360" y2="824" class="arr" marker-end="url(#arr-down)"/>
+
+<!-- ===== LOOP: Decision 10 "No" → back to View Plan ===== -->
+<line x1="396" y1="718" x2="540" y2="718" class="arr"/>
+<line x1="540" y1="718" x2="540" y2="595" class="arr"/>
+<line x1="540" y1="595" x2="450" y2="595" class="arr" marker-end="url(#arr-left)"/>
+<text x="510" y="656" class="ts right-label">未满 7 天</text>
+
+<!-- Loop from Adjust back to View Plan -->
+<line x1="360" y1="862" x2="360" y2="882" class="arr"/>
+<line x1="360" y1="882" x2="540" y2="882" class="arr"/>
+<line x1="540" y1="882" x2="540" y2="595" class="arr"/>
+<text x="510" y="740" class="ts right-label">继续下一轮</text>
+
+<!-- Loop closure annotation -->
+<rect x="446" y="590" width="100" height="48" rx="6" class="c-brand-rect"/>
+<text x="496" y="610" class="ts c-brand-text" text-anchor="middle">循环闭环</text>
+<text x="496" y="626" class="ts c-brand-text" text-anchor="middle">评估→方案→打卡</text>
+
+<!-- ===== EXCEPTION PATHS ===== -->
+
+<!-- Exception: 3 days no check-in -->
+<rect x="540" y="234" width="150" height="48" rx="8" class="c-neutral-rect"/>
+<text x="615" y="252" class="ts node-label" style="fill: #EFAA17;">⚠ 连续3天未打卡</text>
+<text x="615" y="270" class="ts node-label">推送微信提醒</text>
+<line x1="450" y1="634" x2="540" y2="634" class="leader"/>
+<line x1="540" y1="634" x2="540" y2="282" class="leader" marker-end="url(#arr-down)"/>
+
+<!-- Exception: Severe symptoms -->
+<rect x="540" y="366" width="150" height="48" rx="8" class="c-danger-rect"/>
+<text x="615" y="384" class="ts node-label" style="fill: var(--danger);">⚠ 报告严重症状</text>
+<text x="615" y="402" class="ts node-label">建议立即就医</text>
+<line x1="450" y1="395" x2="540" y2="395" class="leader" style="stroke: var(--danger);" marker-end="url(#arr-danger)"/>
+
+<!-- Connector: Phase 3 → Phase 4 -->
+<line x1="360" y1="634" x2="360" y2="672" class="arr" marker-end="url(#arr-down)"/>
+
+</svg>
+
+</div>
+</body>
+</html>
