@@ -1,0 +1,7 @@
+<!-- 加载组件 -->
+<view class="loading-wrap">
+  <view class="loading-spinner">
+    <view class="spinner-ring"></view>
+  </view>
+  <view class="loading-text" wx:if="{{text}}">{{text}}</view>
+</view>
