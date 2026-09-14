@@ -1,0 +1,102 @@
+<!-- 食寐有时 - AI 智能问诊 -->
+<view class="page-diagnosis">
+  <!-- 顶部标题 -->
+  <view class="diagnosis-header">
+    <view class="header-title">AI 智能问诊</view>
+    <view class="header-subtitle">请描述你的症状，AI 将为你分析体质</view>
+  </view>
+
+  <!-- 对话区域 -->
+  <view class="chat-section">
+    <!-- AI 提问 -->
+    <view class="chat-bubble ai-bubble">
+      <view class="bubble-avatar ai-avatar">AI</view>
+      <view class="bubble-content">
+        <view class="bubble-text">你好，我是食寐有时 AI 问诊助手。请告诉我你最近有哪些不适症状？比如入睡困难、多梦易醒、胃胀、疲劳乏力等。</view>
+      </view>
+    </view>
+
+    <!-- 用户回答（历史列表） -->
+    <view wx:for="{{messages}}" wx:key="index" class="chat-bubble {{item.role === 'user' ? 'user-bubble' : 'ai-bubble'}}">
+      <view class="bubble-avatar {{item.role === 'user' ? 'user-avatar' : 'ai-avatar'}}">
+        {{item.role === 'user' ? '我' : 'AI'}}
+      </view>
+      <view class="bubble-content">
+        <view class="bubble-text">{{item.content}}</view>
+      </view>
+    </view>
+
+    <!-- AI 正在分析中 -->
+    <view wx:if="{{analyzing}}" class="chat-bubble ai-bubble">
+      <view class="bubble-avatar ai-avatar">AI</view>
+      <view class="bubble-content">
+        <view class="typing-indicator">
+          <view class="typing-dot"></view>
+          <view class="typing-dot"></view>
+          <view class="typing-dot"></view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 诊断结果 -->
+    <view wx:if="{{diagnosisResult}}" class="result-card">
+      <view class="result-title">诊断结果</view>
+      <view class="result-constitution">
+        <view class="result-label">体质类型</view>
+        <view class="result-value">{{diagnosisResult.constitution}}</view>
+      </view>
+      <view class="result-detail">
+        <view class="result-label">分析说明</view>
+        <view class="result-value">{{diagnosisResult.description}}</view>
+      </view>
+      <view class="result-suggestion">
+        <view class="result-label">调理建议</view>
+        <view class="result-value">{{diagnosisResult.suggestion}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷症状标签 -->
+  <view class="quick-tags">
+    <view class="tags-title">快捷选择症状</view>
+    <view class="tags-list">
+      <view 
+        wx:for="{{symptomTags}}" 
+        wx:key="index"
+        class="tag-item {{item.selected ? 'active' : ''}}"
+        bindtap="toggleTag"
+        data-index="{{index}}"
+      >
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 输入区域 -->
+  <view class="input-section">
+    <view class="input-row">
+      <input 
+        class="symptom-input"
+        placeholder="详细描述你的症状..."
+        value="{{inputValue}}"
+        bindinput="onInput"
+        confirm-type="send"
+        bindconfirm="sendMessage"
+      />
+      <button 
+        class="send-btn"
+        bindtap="sendMessage"
+        disabled="{{!inputValue}}"
+      >
+        发送
+      </button>
+    </view>
+    <button 
+      class="diagnose-btn"
+      bindtap="startDiagnosis"
+      disabled="{{!hasSymptoms}}"
+    >
+      开始诊断
+    </button>
+  </view>
+</view>
