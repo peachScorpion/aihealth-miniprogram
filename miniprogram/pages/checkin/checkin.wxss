@@ -1,0 +1,183 @@
+/* 食寐有时 - 打卡评分页样式 */
+/* Palette: Cinnabar #C7513B, Bamboo #5A7A5A, Indigo #2C4A5A, Moon White #F7F3EC, Paper #FBF8F3, Ink #1C1814, Frost #8B8178, Gold #C4A265 */
+
+.page-checkin {
+  min-height: 100vh;
+  background: #F7F3EC;
+  padding: 0 32rpx;
+}
+
+/* ===== 日期标题 ===== */
+.checkin-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48rpx 0 40rpx;
+}
+
+.checkin-date {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #2C4A5A;
+  margin-bottom: 8rpx;
+}
+
+.checkin-subtitle {
+  font-size: 26rpx;
+  color: #8B8178;
+}
+
+/* ===== 区域标签 ===== */
+.section-label {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #2C4A5A;
+  margin-bottom: 20rpx;
+  padding-left: 8rpx;
+  border-left: 6rpx solid #C7513B;
+}
+
+/* ===== 餐食打卡 ===== */
+.meal-checkin-section {
+  margin-bottom: 36rpx;
+}
+
+.meal-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx;
+}
+
+.checkin-meal-item {
+  display: flex;
+  align-items: center;
+  background: #FBF8F3;
+  border-radius: 20rpx;
+  padding: 24rpx 28rpx;
+  border: 2rpx solid #E8E0D6;
+  transition: all 0.2s;
+}
+
+.checkin-meal-item:active {
+  transform: scale(0.98);
+}
+
+.checkin-meal-item.checked {
+  border-color: #C7513B;
+  background: rgba(199, 81, 59, 0.06);
+}
+
+.meal-checkbox {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 10rpx;
+  border: 3rpx solid #D0C5B8;
+  margin-right: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.checkin-meal-item.checked .meal-checkbox {
+  background: #C7513B;
+  border-color: #C7513B;
+}
+
+.check-mark {
+  color: #FFFFFF;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.meal-info {
+  flex: 1;
+}
+
+.meal-label-text {
+  font-size: 28rpx;
+  color: #1C1814;
+  font-weight: 500;
+  margin-bottom: 4rpx;
+}
+
+.meal-name-text {
+  font-size: 24rpx;
+  color: #8B8178;
+}
+
+/* ===== 睡眠评分 ===== */
+.sleep-rating-section {
+  margin-bottom: 36rpx;
+}
+
+.rating-card {
+  background: #FBF8F3;
+  border-radius: 24rpx;
+  padding: 40rpx 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1rpx solid rgba(199, 81, 59, 0.06);
+}
+
+.rating-text {
+  font-size: 28rpx;
+  color: #8B8178;
+  margin-top: 16rpx;
+}
+
+/* ===== 备注区 ===== */
+.note-section {
+  margin-bottom: 36rpx;
+  position: relative;
+}
+
+.note-input {
+  width: 100%;
+  height: 160rpx;
+  background: #FBF8F3;
+  border-radius: 20rpx;
+  padding: 24rpx 28rpx;
+  font-size: 28rpx;
+  color: #1C1814;
+  box-sizing: border-box;
+  border: 2rpx solid #E8E0D6;
+}
+
+.note-input:focus {
+  border-color: #C7513B;
+}
+
+.note-count {
+  text-align: right;
+  font-size: 22rpx;
+  color: #8B8178;
+  margin-top: 8rpx;
+}
+
+/* ===== 提交按钮 ===== */
+.submit-section {
+  padding: 32rpx 0 60rpx;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 96rpx;
+  font-size: 34rpx;
+  background: #C7513B;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 24rpx;
+  font-weight: 600;
+}
+
+.submit-btn:active {
+  background: #B1402D;
+}
+
+.submit-btn.disabled {
+  background: #E0D5C8;
+  color: #B8A99A;
+}
