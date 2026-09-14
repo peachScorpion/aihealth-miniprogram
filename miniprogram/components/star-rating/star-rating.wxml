@@ -1,0 +1,12 @@
+<!-- 星级评分组件 -->
+<view class="star-rating">
+  <view 
+    wx:for="{{5}}" 
+    wx:key="index"
+    class="star {{index < score ? 'active' : ''}}"
+    bindtap="onTap"
+    data-score="{{index + 1}}"
+  >
+    ★
+  </view>
+</view>
