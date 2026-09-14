@@ -1,0 +1,94 @@
+/* 餐食卡片组件样式 */
+.meal-card {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 28rpx 32rpx;
+  box-shadow: 0 4rpx 20rpx rgba(61, 50, 41, 0.04);
+  border: 1rpx solid #F0E8DF;
+  transition: all 0.2s;
+}
+
+.meal-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 8rpx rgba(61, 50, 41, 0.04);
+}
+
+.meal-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.meal-icon {
+  font-size: 36rpx;
+  margin-right: 12rpx;
+}
+
+.meal-type {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #E8913A;
+  background: #FDF0E2;
+  padding: 4rpx 16rpx;
+  border-radius: 999rpx;
+}
+
+.meal-time {
+  margin-left: auto;
+  font-size: 22rpx;
+  color: #B8A99A;
+}
+
+.meal-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #3D3229;
+  margin-bottom: 16rpx;
+}
+
+.meal-ingredients {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+  margin-bottom: 16rpx;
+}
+
+.ingredient-tag {
+  font-size: 24rpx;
+  color: #5C4F42;
+  background: #F8F4F0;
+  padding: 6rpx 16rpx;
+  border-radius: 999rpx;
+}
+
+.meal-reason {
+  display: flex;
+  gap: 12rpx;
+  padding: 16rpx;
+  background: #FFF8F0;
+  border-radius: 16rpx;
+}
+
+.reason-label {
+  font-size: 24rpx;
+  color: #E8913A;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.reason-text {
+  font-size: 24rpx;
+  color: #8B7E6E;
+  line-height: 1.5;
+}
+
+.meal-footer {
+  margin-top: 16rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #F0E8DF;
+}
+
+.meal-more {
+  font-size: 24rpx;
+  color: #E8913A;
+}
