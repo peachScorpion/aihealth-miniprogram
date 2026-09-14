@@ -1,0 +1,62 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/disclaimer/disclaimer",
+    "pages/assessment/assessment",
+    "pages/diagnosis/diagnosis",
+    "pages/plan/plan",
+    "pages/checkin/checkin",
+    "pages/report/report",
+    "pages/reminder/reminder",
+    "pages/user/user"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#F7F3EC",
+    "navigationBarTitleText": "食寐有时",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F7F3EC"
+  },
+  "tabBar": {
+    "color": "#8B8178",
+    "selectedColor": "#C7513B",
+    "backgroundColor": "#FBF8F3",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/plan/plan",
+        "text": "今日方案",
+        "iconPath": "images/tab-plan.png",
+        "selectedIconPath": "images/tab-plan-active.png"
+      },
+      {
+        "pagePath": "pages/diagnosis/diagnosis",
+        "text": "AI问诊",
+        "iconPath": "images/tab-diagnosis.png",
+        "selectedIconPath": "images/tab-diagnosis-active.png"
+      },
+      {
+        "pagePath": "pages/report/report",
+        "text": "健康报告",
+        "iconPath": "images/tab-report.png",
+        "selectedIconPath": "images/tab-report-active.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "images/tab-user.png",
+        "selectedIconPath": "images/tab-user-active.png"
+      }
+    ]
+  },
+  "usingComponents": {
+    "meal-card": "/components/meal-card/meal-card",
+    "star-rating": "/components/star-rating/star-rating",
+    "progress-bar": "/components/progress-bar/progress-bar",
+    "loading": "/components/loading/loading"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于提供更适合你所在地区的饮食建议"
+    }
+  }
+}
