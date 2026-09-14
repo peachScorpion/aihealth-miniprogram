@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>食寐有时 · 用户操作路径业务流程图 v6</title>
+<style>
+  :root {
+    color-scheme: light;
+    --surface: #F7F3EC;
+    --brand: #C7513B;
+    --brand-soft: #F5E4DD;
+    --brand-2: #5A7A5A;
+    --brand-2-soft: #E5EDE5;
+    --warning: #D4862B;
+    --text: #2D2D2D;
+    --text-muted: #6B6B6B;
+    --font-sans: "Noto Sans SC", "PingFang SC", system-ui, sans-serif;
+    --font-display: "Noto Serif SC", "STSong", serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--surface); color: var(--text); font: 400 14px/20px var(--font-sans); display: flex; justify-content: center; padding: 40px 20px; }
+  .container { max-width: 1300px; width: 100%; background: #fff; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); padding: 24px; }
+  .header { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid rgba(45,45,45,0.1); }
+  .header h1 { font: 600 20px/28px var(--font-display); color: var(--text); margin-bottom: 4px; }
+  .header p { font: 400 12px/18px var(--font-sans); color: var(--text-muted); }
+  .legend { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 12px; font-size: 12px; color: var(--text-muted); }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-swatch { width: 14px; height: 14px; border-radius: 3px; border: 1px solid; }
+  svg { width: 100%; height: auto; display: block; margin-top: 16px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>食寐有时 · 用户操作路径业务流程图 <span style="font-size:12px;color:var(--text-muted);">v6.0</span></h1>
+    <p>验证核心闭环：游客体验 → 登录建档 → AI问诊 → 方案推荐 → 每日执行 → 营养师辅助</p>
+    <div class="legend">
+      <div class="legend-item"><span class="legend-swatch" style="background: #F7F3EC; border-color: rgba(45,45,45,0.15);"></span>用户操作</div>
+      <div class="legend-item"><span class="legend-swatch" style="background: #F5E4DD; border-color: #C7513B;"></span>系统/AI处理</div>
+      <div class="legend-item"><span class="legend-swatch" style="background: #E5EDE5; border-color: #5A7A5A;"></span>营养师服务</div>
+      <div class="legend-item"><span class="legend-swatch" style="background: rgba(212,134,43,0.12); border-color: #D4862B;"></span>异常分支</div>
+    </div>
+  </div>
+
+<svg viewBox="0 0 1300 2360" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .tb { fill: #2D2D2D; font: 500 12px/16px "Noto Sans SC", sans-serif; }
+  .ts { fill: #6B6B6B; font: 400 11px/16px "Noto Sans SC", sans-serif; }
+  .line-black { stroke: #6B6B6B; stroke-width: 1.5; stroke-linecap: round; fill: none; }
+  .line-brand { stroke: #C7513B; stroke-width: 1.5; stroke-linecap: round; fill: none; }
+  .line-brand2 { stroke: #5A7A5A; stroke-width: 1.5; stroke-linecap: round; fill: none; }
+  .line-warn { stroke: #D4862B; stroke-width: 1.5; stroke-linecap: round; stroke-dasharray: 5 3; fill: none; }
+  .line-dashed { stroke: #6B6B6B; stroke-width: 1.2; stroke-linecap: round; stroke-dasharray: 4 4; fill: none; }
+  .leader { stroke: #A19E97; stroke-width: 0.5; stroke-dasharray: 4 4; fill: none; }
+  .node-label { text-anchor: middle; dominant-baseline: central; }
+  .phase-label { fill: #6B6B6B; font: 500 11px/16px "Noto Sans SC", sans-serif; letter-spacing: 1px; }
+  .c-neutral { fill: #F7F3EC; stroke: rgba(45,45,45,0.15); stroke-width: 1; }
+  .c-brand { fill: #F5E4DD; stroke: #C7513B; stroke-width: 1; }
+  .c-brand-text { fill: #8C3826; }
+  .c-brand2 { fill: #E5EDE5; stroke: #5A7A5A; stroke-width: 1; }
+  .c-brand2-text { fill: #3D553D; }
+  .c-warn { fill: rgba(212,134,43,0.12); stroke: #D4862B; stroke-width: 1; }
+  .c-demo { fill: #EEF2F7; stroke: #7A8BA8; stroke-width: 1; stroke-dasharray: 4 3; }
+</style>
+
+<!-- Phase Labels -->
+<text x="40" y="55" class="phase-label">PHASE 1  进入与游客体验</text>
+<text x="40" y="320" class="phase-label">PHASE 2  登录与建档</text>
+<text x="40" y="560" class="phase-label">PHASE 3  AI智能问诊（对话式）</text>
+<text x="40" y="960" class="phase-label">PHASE 4  方案生成与首页</text>
+<text x="40" y="1260" class="phase-label">PHASE 5  每日执行</text>
+<text x="40" y="1620" class="phase-label">PHASE 6  效果追踪与迭代</text>
+<text x="40" y="1900" class="phase-label">PHASE 7  营养师辅助</text>
+
+<line x1="40" y1="65" x2="1260" y2="65" class="leader"/>
+<line x1="40" y1="330" x2="1260" y2="330" class="leader"/>
+<line x1="40" y1="570" x2="1060" y2="570" class="leader"/>
+<line x1="40" y1="970" x2="1060" y2="970" class="leader"/>
+<line x1="40" y1="1270" x2="1060" y2="1270" class="leader"/>
+<line x1="40" y1="1630" x2="1260" y2="1630" class="leader"/>
+<line x1="40" y1="1910" x2="1260" y2="1910" class="leader"/>
+
+<!-- ============================================================
+     PHASE 1: 进入与游客体验（不强制登录）
+     ============================================================ -->
+
+<rect x="570" y="80" width="160" height="34" rx="17" class="c-neutral"/>
+<text x="650" y="97" class="tb node-label">打开食寐有时</text>
+
+<rect x="570" y="150" width="160" height="44" rx="6" class="c-demo"/>
+<text x="650" y="166" class="tb node-label" style="fill:#4A6278;">首页展示 Demo 数据</text>
+<text x="650" y="182" class="ts node-label" style="font-size:10px;fill:#7A8BA8;">示例体质/推荐食谱/打卡</text>
+
+<rect x="300" y="240" width="140" height="50" rx="6" class="c-demo"/>
+<text x="370" y="256" class="tb node-label" style="fill:#4A6278;">浏览食谱</text>
+<text x="370" y="272" class="ts node-label" style="font-size:10px;fill:#7A8BA8;">查看食材/做法</text>
+
+<rect x="540" y="240" width="140" height="50" rx="6" class="c-demo"/>
+<text x="610" y="256" class="tb node-label" style="fill:#4A6278;">查看报告 Demo</text>
+<text x="610" y="272" class="ts node-label" style="font-size:10px;fill:#7A8BA8;">示例数据/趋势图</text>
+
+<rect x="780" y="240" width="140" height="50" rx="6" class="c-demo"/>
+<text x="850" y="256" class="tb node-label" style="fill:#4A6278;">体验AI问诊</text>
+<text x="850" y="272" class="ts node-label" style="font-size:10px;fill:#7A8BA8;">体验对话流程</text>
+
+<!-- 打开食寐有时 → 首页展示Demo数据 -->
+<line x1="650" y1="114" x2="650" y2="150" class="line-black"/>
+<polygon points="650,150 644,140 656,140" fill="#6B6B6B"/>
+
+<!-- 从Demo数据底部垂直下到分支线 -->
+<line x1="650" y1="194" x2="650" y2="210" class="line-dashed"/>
+
+<!-- 一条水平分支线，从370到850 -->
+<line x1="370" y1="210" x2="850" y2="210" class="line-dashed"/>
+
+<!-- 三条垂直下引线，从水平线到各子节点 -->
+<line x1="370" y1="210" x2="370" y2="240" class="line-dashed"/>
+<polygon points="370,240 364,230 376,230" fill="#7A8BA8"/>
+
+<line x1="610" y1="210" x2="610" y2="240" class="line-dashed"/>
+<polygon points="610,240 604,230 616,230" fill="#7A8BA8"/>
+
+<line x1="850" y1="210" x2="850" y2="240" class="line-dashed"/>
+<polygon points="850,240 844,230 856,230" fill="#7A8BA8"/>
+
+<!-- 深度操作触发登录 -->
+<rect x="1020" y="240" width="160" height="50" rx="6" class="c-warn"/>
+<text x="1100" y="256" class="ts node-label" style="fill:#D4862B;font-weight:500;">点击深度操作</text>
+<text x="1100" y="272" class="ts node-label" style="font-size:10px;">打卡/保存/问诊结果</text>
+
+<line x1="920" y1="265" x2="1020" y2="265" class="line-warn"/>
+<polygon points="1020,265 1010,259 1010,271" fill="#D4862B"/>
+
+<!-- ============================================================
+     PHASE 2: 登录与建档
+     ============================================================ -->
+
+<rect x="570" y="360" width="160" height="30" rx="6" class="c-neutral"/>
+<text x="650" y="375" class="tb node-label">微信授权登录</text>
+
+<rect x="570" y="420" width="160" height="30" rx="6" class="c-neutral"/>
+<text x="650" y="435" class="tb node-label">确认免责声明</text>
+
+<polygon points="650,485 690,515 650,545 610,515" class="c-neutral"/>
+<text x="650" y="515" class="ts node-label">同意?</text>
+
+<rect x="370" y="495" width="100" height="28" rx="6" class="c-warn"/>
+<text x="420" y="509" class="ts node-label" style="fill:#D4862B;">返回游客模式</text>
+
+<rect x="570" y="570" width="160" height="32" rx="6" class="c-neutral"/>
+<text x="650" y="586" class="tb node-label">完善个人档案</text>
+<text x="650" y="602" class="ts node-label" style="font-size:10px;">姓名/性别/年龄/身高/体重</text>
+
+<rect x="570" y="640" width="160" height="32" rx="6" class="c-neutral"/>
+<text x="650" y="656" class="tb node-label">饮食习惯 + 生活习惯</text>
+<text x="650" y="672" class="ts node-label" style="font-size:10px;">素食/喜辣/熬夜/运动等</text>
+
+<rect x="570" y="710" width="160" height="28" rx="6" class="c-brand"/>
+<text x="650" y="724" class="tb c-brand-text node-label">自动计算 BMI 指数</text>
+
+<line x1="1100" y1="290" x2="1100" y2="360" class="line-warn"/>
+<line x1="1100" y1="360" x2="730" y2="375" class="line-warn"/>
+<polygon points="730,375 740,369 740,381" fill="#D4862B"/>
+
+<line x1="650" y1="390" x2="650" y2="420" class="line-black"/>
+<polygon points="650,420 644,410 656,410" fill="#6B6B6B"/>
+
+<line x1="650" y1="450" x2="650" y2="485" class="line-black"/>
+<polygon points="650,485 644,475 656,475" fill="#6B6B6B"/>
+
+<line x1="610" y1="515" x2="470" y2="515" class="line-black"/>
+<polygon points="470,515 480,509 480,521" fill="#6B6B6B"/>
+<text x="540" y="507" class="ts">否</text>
+
+<line x1="650" y1="545" x2="650" y2="570" class="line-black"/>
+<polygon points="650,570 644,560 656,560" fill="#6B6B6B"/>
+<text x="662" y="558" class="ts">是</text>
+
+<line x1="650" y1="612" x2="650" y2="640" class="line-black"/>
+<polygon points="650,640 644,630 656,630" fill="#6B6B6B"/>
+
+<line x1="650" y1="682" x2="650" y2="710" class="line-black"/>
+<polygon points="650,710 644,700 656,700" fill="#6B6B6B"/>
+
+<!-- ============================================================
+     PHASE 3: AI智能问诊（对话式）
+     ============================================================ -->
+
+<rect x="570" y="760" width="160" height="28" rx="6" class="c-brand"/>
+<text x="650" y="774" class="tb c-brand-text node-label">进入 AI 智能问诊</text>
+
+<rect x="570" y="810" width="160" height="26" rx="6" class="c-neutral"/>
+<text x="650" y="823" class="tb node-label">① 问:睡眠情况</text>
+
+<rect x="570" y="860" width="160" height="26" rx="6" class="c-neutral"/>
+<text x="650" y="873" class="tb node-label">② 问:情绪状态</text>
+
+<rect x="570" y="910" width="160" height="26" rx="6" class="c-neutral"/>
+<text x="650" y="923" class="tb node-label">③ 问:饮食规律</text>
+
+<rect x="800" y="760" width="200" height="190" rx="6" class="c-neutral" style="opacity:0.5;"/>
+<text x="900" y="782" class="ts node-label" style="font-weight:500;">快捷标签回复</text>
+<text x="900" y="802" class="ts node-label" style="font-size:10px;">入睡困难 / 多梦易醒</text>
+<text x="900" y="818" class="ts node-label" style="font-size:10px;">焦虑 / 抑郁 / 易怒</text>
+<text x="900" y="834" class="ts node-label" style="font-size:10px;">三餐规律 / 暴饮暴食</text>
+<text x="900" y="850" class="ts node-label" style="font-size:10px;">消化不良 / 便秘</text>
+<text x="900" y="866" class="ts node-label" style="font-size:10px;">支持自然语言输入</text>
+<text x="900" y="890" class="ts node-label" style="font-size:10px;fill:#C7513B;">⬇ AI智能分析</text>
+
+<line x1="650" y1="738" x2="650" y2="760" class="line-brand"/>
+<polygon points="650,760 644,750 656,750" fill="#C7513B"/>
+
+<line x1="650" y1="788" x2="650" y2="810" class="line-brand"/>
+<polygon points="650,810 644,800 656,800" fill="#C7513B"/>
+
+<line x1="650" y1="837" x2="650" y2="860" class="line-brand"/>
+<polygon points="650,860 644,850 656,850" fill="#C7513B"/>
+
+<line x1="650" y1="887" x2="650" y2="910" class="line-brand"/>
+<polygon points="650,910 644,900 656,900" fill="#C7513B"/>
+
+<!-- ============================================================
+     PHASE 4: 方案生成与首页
+     ============================================================ -->
+
+<rect x="570" y="1000" width="160" height="26" rx="6" class="c-neutral"/>
+<text x="650" y="1013" class="tb node-label">④ 问:肠胃功能</text>
+
+<rect x="570" y="1050" width="160" height="28" rx="6" class="c-neutral"/>
+<text x="650" y="1064" class="tb node-label">⑤ 问:其他不适症状</text>
+
+<rect x="570" y="1100" width="160" height="30" rx="6" class="c-brand"/>
+<text x="650" y="1114" class="tb c-brand-text node-label">AI分析中医体质类型</text>
+
+<rect x="570" y="1150" width="160" height="44" rx="6" class="c-brand"/>
+<text x="650" y="1164" class="tb c-brand-text node-label">展示体质结果</text>
+<text x="650" y="1182" class="ts c-brand-text node-label" style="font-size:10px;">6种体质 + 调理建议</text>
+
+<rect x="570" y="1210" width="160" height="30" rx="6" class="c-brand"/>
+<text x="650" y="1224" class="tb c-brand-text node-label">生成个性化调理方案</text>
+
+<rect x="800" y="1000" width="220" height="246" rx="6" class="c-neutral" style="opacity:0.5;"/>
+<text x="910" y="1022" class="ts node-label" style="font-weight:500;">首页展示逻辑</text>
+<text x="910" y="1042" class="ts node-label" style="font-size:10px;">① 健康关注点（置顶）</text>
+<text x="910" y="1058" class="ts node-label" style="font-size:10px;">② 今日推荐方案</text>
+<text x="910" y="1074" class="ts node-label" style="font-size:10px;">  - 问题描述</text>
+<text x="910" y="1090" class="ts node-label" style="font-size:10px;">  - 解决方案</text>
+<text x="910" y="1106" class="ts node-label" style="font-size:10px;">  - 推荐食谱</text>
+<text x="910" y="1126" class="ts node-label" style="font-size:10px;">③ 常用功能入口</text>
+<text x="910" y="1142" class="ts node-label" style="font-size:10px;">  （食谱/打卡/报告）</text>
+<text x="910" y="1162" class="ts node-label" style="font-size:10px;">④ 营养师入口（次要）</text>
+<text x="910" y="1182" class="ts node-label" style="font-size:10px;">⬇ 用户主动选择</text>
+
+<line x1="650" y1="937" x2="650" y2="1000" class="line-brand"/>
+<polygon points="650,1000 644,990 656,990" fill="#C7513B"/>
+
+<line x1="650" y1="1026" x2="650" y2="1050" class="line-brand"/>
+<polygon points="650,1050 644,1040 656,1040" fill="#C7513B"/>
+
+<line x1="650" y1="1078" x2="650" y2="1100" class="line-brand"/>
+<polygon points="650,1100 644,1090 656,1090" fill="#C7513B"/>
+
+<line x1="650" y1="1130" x2="650" y2="1150" class="line-brand"/>
+<polygon points="650,1150 644,1140 656,1140" fill="#C7513B"/>
+
+<line x1="650" y1="1194" x2="650" y2="1210" class="line-brand"/>
+<polygon points="650,1210 644,1200 656,1200" fill="#C7513B"/>
+
+<!-- PHASE 4→PHASE 5 连接 -->
+<line x1="650" y1="1240" x2="650" y2="1300" class="line-black"/>
+<polygon points="650,1300 644,1290 656,1290" fill="#6B6B6B"/>
+
+<!-- ============================================================
+     PHASE 5: 每日执行（树状分支，无交叉，所有箭头朝下）
+     ============================================================ -->
+
+<rect x="560" y="1300" width="180" height="30" rx="6" class="c-neutral"/>
+<text x="650" y="1315" class="tb node-label">进入首页（健康问题置顶）</text>
+
+<!-- 顶部 → 菱形 -->
+<line x1="650" y1="1330" x2="650" y2="1370" class="line-black"/>
+<polygon points="650,1370 644,1360 656,1360" fill="#6B6B6B"/>
+
+<!-- 菱形：功能选择 -->
+<polygon points="650,1370 690,1400 650,1430 610,1400" class="c-neutral"/>
+<text x="650" y="1395" class="ts node-label">功能选择?</text>
+
+<!-- ===== 树状分支主干（菱形下方） ===== -->
+<!-- 菱形下顶点 → 分叉水平线 -->
+<line x1="650" y1="1430" x2="650" y2="1455" class="line-black"/>
+
+<!-- 水平分叉线 -->
+<line x1="260" y1="1455" x2="980" y2="1455" class="line-black"/>
+
+<!-- ===== 四个Tab节点（第一层：分叉线下方） ===== -->
+<rect x="200" y="1470" width="120" height="28" rx="6" class="c-neutral"/>
+<text x="260" y="1485" class="tb node-label">食谱</text>
+
+<rect x="420" y="1470" width="120" height="28" rx="6" class="c-neutral"/>
+<text x="480" y="1485" class="tb node-label">打卡</text>
+
+<rect x="740" y="1470" width="120" height="28" rx="6" class="c-neutral"/>
+<text x="800" y="1485" class="tb node-label">报告</text>
+
+<rect x="920" y="1470" width="120" height="28" rx="6" class="c-neutral"/>
+<text x="980" y="1485" class="tb node-label">我的</text>
+
+<!-- ===== 垂直引线：从分叉线向下到Tab节点顶部（箭头统一朝下） ===== -->
+<line x1="260" y1="1455" x2="260" y2="1470" class="line-black"/>
+<polygon points="260,1470 254,1460 266,1460" fill="#6B6B6B"/>
+
+<line x1="480" y1="1455" x2="480" y2="1470" class="line-black"/>
+<polygon points="480,1470 474,1460 486,1460" fill="#6B6B6B"/>
+
+<line x1="800" y1="1455" x2="800" y2="1470" class="line-black"/>
+<polygon points="800,1470 794,1460 806,1460" fill="#6B6B6B"/>
+
+<line x1="980" y1="1455" x2="980" y2="1470" class="line-black"/>
+<polygon points="980,1470 974,1460 986,1460" fill="#6B6B6B"/>
+
+<!-- ===== 第二层节点（Tab子功能，Tab下方） ===== -->
+<rect x="180" y="1520" width="160" height="26" rx="6" class="c-neutral"/>
+<text x="260" y="1534" class="tb node-label">查看推荐食谱</text>
+
+<rect x="180" y="1568" width="160" height="26" rx="6" class="c-neutral"/>
+<text x="260" y="1582" class="tb node-label">食材/做法/收藏</text>
+
+<rect x="400" y="1520" width="160" height="26" rx="6" class="c-neutral"/>
+<text x="480" y="1534" class="tb node-label">记录睡眠+饮食+心情</text>
+
+<rect x="400" y="1568" width="160" height="26" rx="6" class="c-brand"/>
+<text x="480" y="1582" class="tb c-brand-text node-label">更新健康数据</text>
+
+<rect x="720" y="1520" width="160" height="26" rx="6" class="c-neutral"/>
+<text x="800" y="1534" class="tb node-label">查看本周统计+趋势</text>
+
+<rect x="720" y="1568" width="160" height="26" rx="6" class="c-brand"/>
+<text x="800" y="1582" class="tb c-brand-text node-label">生成健康洞察</text>
+
+<rect x="900" y="1520" width="160" height="26" rx="6" class="c-neutral"/>
+<text x="980" y="1534" class="tb node-label">档案/提醒/评估</text>
+
+<!-- ===== 从Tab节点底部向下到第二层子功能（箭头朝下） ===== -->
+<!-- 食谱 → 查看推荐食谱 -->
+<line x1="260" y1="1498" x2="260" y2="1520" class="line-black"/>
+<polygon points="260,1520 254,1510 266,1510" fill="#6B6B6B"/>
+
+<line x1="260" y1="1546" x2="260" y2="1568" class="line-black"/>
+<polygon points="260,1568 254,1558 266,1558" fill="#6B6B6B"/>
+
+<!-- 打卡 → 记录睡眠+饮食+心情 -->
+<line x1="480" y1="1498" x2="480" y2="1520" class="line-black"/>
+<polygon points="480,1520 474,1510 486,1510" fill="#6B6B6B"/>
+
+<line x1="480" y1="1546" x2="480" y2="1568" class="line-brand"/>
+<polygon points="480,1568 474,1558 486,1558" fill="#C7513B"/>
+
+<!-- 报告 → 查看本周统计+趋势 -->
+<line x1="800" y1="1498" x2="800" y2="1520" class="line-black"/>
+<polygon points="800,1520 794,1510 806,1510" fill="#6B6B6B"/>
+
+<line x1="800" y1="1546" x2="800" y2="1568" class="line-brand"/>
+<polygon points="800,1568 794,1558 806,1558" fill="#C7513B"/>
+
+<!-- 我的 → 档案/提醒/评估 -->
+<line x1="980" y1="1498" x2="980" y2="1520" class="line-black"/>
+<polygon points="980,1520 974,1510 986,1510" fill="#6B6B6B"/>
+
+<!-- ============================================================
+     PHASE 6: 效果追踪与迭代
+     ============================================================ -->
+
+<!-- 数据汇聚线：更新健康数据 + 生成健康洞察 → 7天数据汇聚（在PHASE5区域内完成水平汇聚，再统一向下进入PHASE6） -->
+<path d="M 480 1594 L 480 1608 L 650 1608" class="line-brand"/>
+<path d="M 800 1594 L 800 1608 L 650 1608" class="line-brand"/>
+<line x1="650" y1="1608" x2="650" y2="1670" class="line-brand"/>
+<polygon points="650,1670 644,1660 656,1660" fill="#C7513B"/>
+
+<rect x="510" y="1670" width="280" height="28" rx="6" class="c-neutral"/>
+<text x="650" y="1685" class="tb node-label">7天数据汇聚</text>
+
+<line x1="650" y1="1698" x2="650" y2="1718" class="line-black"/>
+<polygon points="650,1718 644,1708 656,1708" fill="#6B6B6B"/>
+
+<rect x="510" y="1718" width="280" height="30" rx="6" class="c-brand"/>
+<text x="650" y="1734" class="tb c-brand-text node-label">生成7天效果报告</text>
+
+<line x1="650" y1="1748" x2="650" y2="1770" class="line-black"/>
+<polygon points="650,1770 644,1760 656,1760" fill="#6B6B6B"/>
+
+<polygon points="650,1770 690,1800 650,1830 610,1800" class="c-neutral"/>
+<text x="650" y="1795" class="ts node-label">复测?</text>
+<text x="650" y="1811" class="ts node-label" style="font-size:10px;">每30天</text>
+
+<line x1="610" y1="1800" x2="470" y2="1800" class="line-black"/>
+<polygon points="470,1800 480,1794 480,1806" fill="#6B6B6B"/>
+<text x="540" y="1792" class="ts">是</text>
+
+<line x1="690" y1="1800" x2="830" y2="1800" class="line-black"/>
+<polygon points="830,1800 820,1794 820,1806" fill="#6B6B6B"/>
+<text x="760" y="1792" class="ts">否</text>
+
+<rect x="350" y="1782" width="120" height="28" rx="6" class="c-neutral"/>
+<text x="410" y="1797" class="tb node-label">重新问诊</text>
+
+<rect x="830" y="1782" width="120" height="28" rx="6" class="c-brand"/>
+<text x="890" y="1797" class="tb c-brand-text node-label">AI微调方案</text>
+
+<!-- PHASE 6 → PHASE 7 连接：从"档案/提醒/评估"底部先下一小段，右拐到最右侧边缘(x=1240)，沿边缘下到PHASE7，再左拐到中心 -->
+<line x1="980" y1="1546" x2="980" y2="1558" class="line-brand2"/>
+<line x1="980" y1="1558" x2="1240" y2="1558" class="line-brand2"/>
+<line x1="1240" y1="1558" x2="1240" y2="1940" class="line-brand2"/>
+<line x1="1240" y1="1940" x2="650" y2="1940" class="line-brand2"/>
+<line x1="650" y1="1940" x2="650" y2="1960" class="line-brand2"/>
+<polygon points="650,1960 644,1950 656,1950" fill="#5A7A5A"/>
+
+<!-- ============================================================
+     PHASE 7: 营养师辅助（独占一行，PHASE 6下方，所有节点在中心垂直排列）
+     ============================================================ -->
+
+<rect x="570" y="1960" width="160" height="30" rx="6" class="c-brand2"/>
+<text x="650" y="1976" class="tb c-brand2-text node-label">营养师真人评估</text>
+
+<line x1="650" y1="1990" x2="650" y2="2014" class="line-brand2"/>
+<polygon points="650,2014 644,2004 656,2004" fill="#5A7A5A"/>
+
+<rect x="570" y="2014" width="160" height="24" rx="6" class="c-brand2"/>
+<text x="650" y="2027" class="tb c-brand2-text node-label">查看服务+资质</text>
+
+<line x1="650" y1="2038" x2="650" y2="2062" class="line-brand2"/>
+<polygon points="650,2062 644,2052 656,2052" fill="#5A7A5A"/>
+
+<rect x="570" y="2062" width="160" height="24" rx="6" class="c-brand2"/>
+<text x="650" y="2075" class="tb c-brand2-text node-label">提交评估申请</text>
+
+<line x1="650" y1="2086" x2="650" y2="2110" class="line-brand2"/>
+<polygon points="650,2110 644,2100 656,2100" fill="#5A7A5A"/>
+
+<rect x="570" y="2110" width="160" height="28" rx="6" class="c-brand2"/>
+<text x="650" y="2125" class="tb c-brand2-text node-label">营养师一对一评估</text>
+
+<line x1="650" y1="2138" x2="650" y2="2162" class="line-brand2"/>
+<polygon points="650,2162 644,2152 656,2152" fill="#5A7A5A"/>
+
+<rect x="570" y="2162" width="160" height="28" rx="6" class="c-brand2"/>
+<text x="650" y="2177" class="tb c-brand2-text node-label">专属饮食调理方案</text>
+
+<line x1="650" y1="2190" x2="650" y2="2214" class="line-brand2"/>
+<polygon points="650,2214 644,2204 656,2204" fill="#5A7A5A"/>
+
+<rect x="570" y="2214" width="160" height="28" rx="6" class="c-brand2"/>
+<text x="650" y="2229" class="tb c-brand2-text node-label">持续跟踪+调整</text>
+
+<!-- ============================================================
+     异常分支 & 反馈线（全部在主流程节点之后绘制，统一走最左/最右边缘，不遮挡中心内容）
+     ============================================================ -->
+
+<!-- 严重症状建议就医：走右侧空白区 -->
+<rect x="980" y="870" width="180" height="36" rx="6" class="c-warn"/>
+<text x="1070" y="884" class="ts node-label" style="fill:#D4862B;font-weight:500;">⚠ 严重症状</text>
+<text x="1070" y="898" class="ts node-label" style="font-size:10px;">建议立即就医</text>
+
+<path d="M 650 950 L 980 888" class="line-warn"/>
+<polygon points="980,888 974,894 974,882" fill="#D4862B"/>
+
+<!-- 专业方案反哺AI：专属饮食调理方案 → 生成7天效果报告（走最左侧内边缘x=90） -->
+<path d="M 570 2176 L 90 2176 L 90 1733 L 510 1733" class="line-warn"/>
+<polygon points="510,1733 500,1727 500,1739" fill="#D4862B"/>
+<text x="280" y="2168" class="ts" style="fill:#D4862B;font-size:10px;">专业方案反哺AI智能</text>
+
+<!-- 连续3天未打卡：从更新健康数据引出（先向下，左拐到最左侧外边缘x=60，沿边缘下到矩形上方，再右拐到中心，垂直向下进入矩形顶部，不穿过文字） -->
+<path d="M 480 1594 L 480 1608 L 60 1608 L 60 2250 L 250 2250 L 250 2262" class="line-warn"/>
+<polygon points="250,2262 244,2252 256,2252" fill="#D4862B"/>
+
+<rect x="160" y="2262" width="180" height="36" rx="6" class="c-warn"/>
+<text x="250" y="2276" class="ts node-label" style="fill:#D4862B;font-weight:500;">⚠ 连续3天未打卡</text>
+<text x="250" y="2290" class="ts node-label" style="font-size:10px;">触发AI提醒推送</text>
+
+</svg>
+</div>
+</body>
+</html>
